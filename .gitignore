@@ -1,0 +1,23 @@
+# 모든 파일을 기본적으로 무시
+*
+
+# 예외 처리할 파일들
+!.gitignore
+!*.sln
+!*.vcxproj
+!*.vcxproj.filters
+!*.vcxproj.user
+!*.h
+!*.cpp
+
+# 특정 폴더 내부의 파일 예외 처리
+!Windows_GameCoding/
+!Windows_GameCoding/**/*.sln
+!Windows_GameCoding/**/*.vcxproj
+!Windows_GameCoding/**/*.vcxproj.filters
+!Windows_GameCoding/**/*.vcxproj.user
+!Windows_GameCoding/**/*.h
+!Windows_GameCoding/**/*.cpp
+
+# .vs 폴더는 무시
+Windows_GameCoding/.vs/
