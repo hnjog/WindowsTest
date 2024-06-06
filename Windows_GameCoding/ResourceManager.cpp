@@ -25,6 +25,12 @@ void ResourceManager::Init()
 
 	{
 		LineMesh* mesh = new LineMesh();
+		mesh->Load(L"Menu.txt");
+		_lineMeshes[L"Menu"] = mesh;
+	}
+
+	{
+		LineMesh* mesh = new LineMesh();
 		mesh->Load(L"MissileTank.txt");
 		_lineMeshes[L"MissileTank"] = mesh;
 	}

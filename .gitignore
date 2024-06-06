@@ -9,6 +9,7 @@
 !*.vcxproj.user
 !*.h
 !*.cpp
+!*.txt
 
 # 특정 폴더 내부의 파일 예외 처리
 !Windows_GameCoding/
