@@ -2,7 +2,6 @@
 #include "Player.h"
 #include"TimeManager.h"
 #include"InputManager.h"
-#include"Missile.h"
 #include"ObjectManager.h"
 #include"ResourceManager.h"
 #include"LineMesh.h"
@@ -54,26 +53,23 @@ void Player::Update()
 
 	if (GET_SINGLE(InputManager)->GetButton(KeyType::Q))
 	{
-		_barrelAngle += 10 * delta;
+
 	}
 
 	if (GET_SINGLE(InputManager)->GetButton(KeyType::E))
 	{
-		_barrelAngle -= 10 * delta;
+
 	}
 
 	if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::SpaceBar))
 	{
-		Missile* missile = GET_SINGLE(ObjectManager)->CreateObject<Missile>();
-		missile->SetPos(GetFirePos());
-		missile->setAngle(_barrelAngle);
-		GET_SINGLE(ObjectManager)->Add(missile);
+
 	}
 }
 
 void Player::Render(HDC hdc)
 {
-	const LineMesh* mesh= GET_SINGLE(ResourceManager)->GetLineMesh(L"Player");
+	const LineMesh* mesh= GET_SINGLE(ResourceManager)->GetLineMesh(GetMeshKey());
 	if (mesh)
 	{
 		mesh->Render(hdc,_pos);
@@ -82,22 +78,16 @@ void Player::Render(HDC hdc)
 	HPEN pen = ::CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
 	HPEN oldPen = (HPEN)::SelectObject(hdc, pen);
 
-	Utils::DrawLine(hdc, _pos, GetFirePos());
+	//Utils::DrawLine(hdc, _pos, GetFirePos());
 
 	::SelectObject(hdc, oldPen);
 	::DeleteObject(pen);
 }
 
-Pos Player::GetFirePos()
+wstring Player::GetMeshKey()
 {
-	Pos firePos = _pos;
+	if (_playerType == PlayerType::MissileTank)
+		return L"MissileTank";
 
-	// x좌표에 뭘 더해줘야 할까?
-	// cos() = a / c 이기에
-	// firePos.x 에 같은 x 축 좌표인 a를 구하기 위해
-	// c인 _barreLength를 곱해줌
-	firePos.x += _barrelLength * cos(_barrelAngle);
-	firePos.y -= _barrelLength * sin(_barrelAngle);
-
-	return firePos;
+	return L"CannonTank";
 }
