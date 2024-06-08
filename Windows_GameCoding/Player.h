@@ -3,7 +3,7 @@
 
 enum class PlayerType
 {
-    CannonTank,
+    CanonTank,
     MissileTank,
 };
 
@@ -20,7 +20,9 @@ public:
 
     wstring GetMeshKey();
 
+    void SetPlayerType(PlayerType playerType) { _playerType = playerType; }
+
 public:
-    PlayerType _playerType = PlayerType::CannonTank;
+    PlayerType _playerType = PlayerType::CanonTank;
 };
 

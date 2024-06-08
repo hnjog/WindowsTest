@@ -43,12 +43,12 @@ void Player::Update()
 
 	if (GET_SINGLE(InputManager)->GetButton(KeyType::W))
 	{
-		_pos.y -= _stat.speed * delta;
+		//_pos.y -= _stat.speed * delta;
 	}
 
 	if (GET_SINGLE(InputManager)->GetButton(KeyType::S))
 	{
-		_pos.y += _stat.speed * delta;
+		//_pos.y += _stat.speed * delta;
 	}
 
 	if (GET_SINGLE(InputManager)->GetButton(KeyType::Q))
@@ -72,7 +72,7 @@ void Player::Render(HDC hdc)
 	const LineMesh* mesh= GET_SINGLE(ResourceManager)->GetLineMesh(GetMeshKey());
 	if (mesh)
 	{
-		mesh->Render(hdc,_pos);
+		mesh->Render(hdc,_pos,-0.5f,0.5f);
 	}
 
 	HPEN pen = ::CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
@@ -89,5 +89,5 @@ wstring Player::GetMeshKey()
 	if (_playerType == PlayerType::MissileTank)
 		return L"MissileTank";
 
-	return L"CannonTank";
+	return L"CanonTank";
 }
