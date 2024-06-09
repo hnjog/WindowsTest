@@ -29,15 +29,20 @@ void Player::Init()
 
 void Player::Update()
 {
+	if (_playerTurn == false)
+		return;
+
 	float delta = GET_SINGLE(TimeManager)->GetDeltaTime();
 
 	if (GET_SINGLE(InputManager)->GetButton(KeyType::A))
 	{
+		_dir = Dir::Left;
 		_pos.x -= _stat.speed * delta;
 	}
 
 	if (GET_SINGLE(InputManager)->GetButton(KeyType::D))
 	{
+		_dir = Dir::Right;
 		_pos.x += _stat.speed * delta;
 	}
 
@@ -69,10 +74,18 @@ void Player::Update()
 
 void Player::Render(HDC hdc)
 {
+	float v = 1.0f;
+
+	if (_dir == Dir::Right)
+	{
+		v = -1.0f;
+	}
+
 	const LineMesh* mesh= GET_SINGLE(ResourceManager)->GetLineMesh(GetMeshKey());
 	if (mesh)
 	{
-		mesh->Render(hdc,_pos,-0.5f,0.5f);
+		
+		mesh->Render(hdc,_pos,0.5f * v,0.5f);
 	}
 
 	HPEN pen = ::CreatePen(PS_SOLID, 1, RGB(255, 0, 0));

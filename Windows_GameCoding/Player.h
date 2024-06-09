@@ -1,14 +1,7 @@
 #pragma once
 #include "Object.h"
 
-enum class PlayerType
-{
-    CanonTank,
-    MissileTank,
-};
-
-class Player :
-    public Object
+class Player : public Object
 {
 public:
     Player();
@@ -20,9 +13,18 @@ public:
 
     wstring GetMeshKey();
 
+    void SetPlayerId(int32 playerId) { _playerId = playerId; }
     void SetPlayerType(PlayerType playerType) { _playerType = playerType; }
+    void SetPlayerTurn(bool playerTurn) { _playerTurn = playerTurn; }
+
+    int32 GetPlayerId() { return _playerId; }
+    PlayerType GetPlayerType() { return _playerType; }
+    bool IsPlayerTurn() { return _playerTurn; }
 
 public:
+    int32 _playerId = 0;
     PlayerType _playerType = PlayerType::CanonTank;
+    bool _playerTurn = false;
+    float _fireAngle = 0.f;
 };
 
