@@ -88,13 +88,23 @@ void Player::Render(HDC hdc)
 		mesh->Render(hdc,_pos,0.5f * v,0.5f);
 	}
 
-	HPEN pen = ::CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-	HPEN oldPen = (HPEN)::SelectObject(hdc, pen);
+	if (_playerTurn == true)
+	{
+		RECT rect;
+		rect.bottom = static_cast<LONG>(_pos.y - 60);
+		rect.left = static_cast<LONG>(_pos.x - 10);
+		rect.right = static_cast<LONG>(_pos.x + 10);
+		rect.top = static_cast<LONG>(_pos.y - 80);
 
-	//Utils::DrawLine(hdc, _pos, GetFirePos());
+		HBRUSH brush = ::CreateSolidBrush(RGB(250, 236, 197));
+		HBRUSH oldBrush = (HBRUSH)::SelectObject(hdc, brush);
 
-	::SelectObject(hdc, oldPen);
-	::DeleteObject(pen);
+		::Ellipse(hdc, rect.left, rect.top, rect.right, rect.bottom);
+
+		::SelectObject(hdc, oldBrush);
+		::DeleteObject(brush);
+	}
+
 }
 
 wstring Player::GetMeshKey()
