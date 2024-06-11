@@ -55,6 +55,20 @@ void FortressScene::Update()
 		object->Update();
 	}
 
+	_sumTime += deltaTime;
+	if (_sumTime >= 1)
+	{
+		_sumTime = 0.f;
+
+		// UIManger의 데이터를 가져다 쓰는 방식으로
+		// 본래는 해당 Scene이나 다른 주체에서 관리하는 것이 더 바람직하긴 하다
+		int32 time = GET_SINGLE(UIManager)->GetRemainTime();
+		time = max(0, time - 1);
+		GET_SINGLE(UIManager)->SetRemainTime(time);
+
+		if (time == 0)
+			ChangePlayerTurn();
+	}
 }
 
 void FortressScene::Render(HDC hdc)
@@ -66,5 +80,18 @@ void FortressScene::Render(HDC hdc)
 	for (auto* object : objects)
 	{
 		object->Render(hdc);
+	}
+}
+
+void FortressScene::ChangePlayerTurn()
+{
+	// player가 2명일 때의 가정
+	if (_playerTurn == 1)
+	{
+
+	}
+	else
+	{
+
 	}
 }
