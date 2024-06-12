@@ -6,6 +6,7 @@
 #include"ResourceManager.h"
 #include"LineMesh.h"
 #include"UIManager.h"
+#include"Bullet.h"
 
 Player::Player ( ) :Object ( ObjectType::Player )
 {
@@ -79,6 +80,17 @@ void Player::Update ( )
 	if ( GET_SINGLE ( InputManager )->GetButtonUp ( KeyType::SpaceBar ) )
 	{
 		// Shooting!
+		_playerTurn = false;
+
+		float percent = GET_SINGLE ( UIManager )->GetPowerPercent ( );
+		float speed = 100;
+		float angle = GET_SINGLE ( UIManager )->GetBarrelAngle ( );
+
+		Bullet* bullet = GET_SINGLE ( ObjectManager )->CreateObject<Bullet> ( );
+		bullet->SetPos ( _pos );
+		// TODO
+
+		GET_SINGLE ( ObjectManager )->Add ( bullet );
 	}
 }
 

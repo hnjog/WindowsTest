@@ -11,5 +11,7 @@ public:
 	virtual void Render(HDC hdc) override;
 
 public:
+	Vector _speed = {};
+	
 };
 
