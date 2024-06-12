@@ -6,7 +6,7 @@ public:
 	FortressScene();
 	virtual ~FortressScene();
 
-	// ¼ø¼ö °¡»ó ÇÔ¼ö
+	// ìˆœìˆ˜ ê°€ìƒ í•¨ìˆ˜
 	virtual void Init() override;
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
