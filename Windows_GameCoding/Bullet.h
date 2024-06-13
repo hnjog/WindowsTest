@@ -10,6 +10,8 @@ public:
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
 
+	void SetSpeed ( Vector speed ) { _speed = speed; }
+
 public:
 	Vector _speed = {};
 	

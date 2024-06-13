@@ -83,11 +83,14 @@ void Player::Update ( )
 		_playerTurn = false;
 
 		float percent = GET_SINGLE ( UIManager )->GetPowerPercent ( );
-		float speed = 100;
+		float speed = 10 * percent;
 		float angle = GET_SINGLE ( UIManager )->GetBarrelAngle ( );
 
 		Bullet* bullet = GET_SINGLE ( ObjectManager )->CreateObject<Bullet> ( );
 		bullet->SetPos ( _pos );
+
+		// radian 변형
+		bullet->SetSpeed ( Vector{ speed * ::cos(angle * PI / 180), - 1 *speed * ::sin(angle * PI / 180)} );
 		// TODO
 
 		GET_SINGLE ( ObjectManager )->Add ( bullet );

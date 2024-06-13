@@ -35,6 +35,6 @@ protected:
 	Stat _stat = {};
 	Pos _pos = {};
 	Dir _dir = Dir::Left;
-	float _radius = 0.f; // 충돌범위 (collider 같은 강체)
+	float _radius = 50.f; // 충돌범위 (collider 같은 강체)
 };
 
