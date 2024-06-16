@@ -4,6 +4,7 @@
 #include"ObjectManager.h"
 #include"SceneManager.h"
 #include"FortressScene.h"
+#include"UIManager.h"
 
 Bullet::Bullet ( ) :Object ( ObjectType::Projectile )
 {
@@ -23,8 +24,11 @@ void Bullet::Update ( )
 	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
 
 	// wind
+	float windPercent = GET_SINGLE ( UIManager )->GetWindPercent ( );
+	_speed.x += 10 * delta * windPercent;
 
 	// gravity
+	_speed.y += 1000 * delta;
 
 	_pos += _speed * delta;
 
