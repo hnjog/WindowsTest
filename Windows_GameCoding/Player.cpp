@@ -88,7 +88,7 @@ void Player::Update ( )
 
 		Bullet* bullet = GET_SINGLE ( ObjectManager )->CreateObject<Bullet> ( );
 		bullet->SetPos ( _pos );
-
+		bullet->SetOwner ( this );
 		// radian 변형
 		bullet->SetSpeed ( Vector{ speed * ::cos(angle * PI / 180), - 1 *speed * ::sin(angle * PI / 180)} );
 		// TODO
