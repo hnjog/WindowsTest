@@ -13,10 +13,10 @@ Game::~Game()
 {
 	GET_SINGLE(SceneManager)->Clear();
 	GET_SINGLE(ResourceManager)->Clear();
-	// ÁøÂ¥ ¸¶Áö¸·¿¡ ³Ö´Â°ÍÀÌ ÁÁ±ä ÇÔ
+	// ì§„ì§œ ë§ˆì§€ë§‰ì— ë„£ëŠ”ê²ƒì´ ì¢‹ê¸´ í•¨
 	_CrtDumpMemoryLeaks();
-	// ÁÖ¼Ò°¡ ¾È³ª¿Â´Ù¸é º¸Åë Àü¿ª º¯¼ö µîÀÌ ³ªÁß¿¡ Áö¿öÁö´Â °ÍÀ» ÀÇ½É
-	// ±×·¡¼­ ÁøÂ¥ ÇÁ·Î±×·¥ÀÌ ³¡³ª´Â ½ÃÁ¡¿¡¼­ Ã¼Å©ÇÏ´Â °ÍÀÌ ÁÁÀ½
+	// ì£¼ì†Œê°€ ì•ˆë‚˜ì˜¨ë‹¤ë©´ ë³´í†µ ì „ì—­ ë³€ìˆ˜ ë“±ì´ ë‚˜ì¤‘ì— ì§€ì›Œì§€ëŠ” ê²ƒì„ ì˜ì‹¬
+	// ê·¸ëž˜ì„œ ì§„ì§œ í”„ë¡œê·¸ëž¨ì´ ëë‚˜ëŠ” ì‹œì ì—ì„œ ì²´í¬í•˜ëŠ” ê²ƒì´ ì¢‹ìŒ
 }
 
 void Game::Init(HWND hwnd)
@@ -26,15 +26,15 @@ void Game::Init(HWND hwnd)
 
 	::GetClientRect(hwnd, &_rect);
 
-	// hdc¿Í È£È¯µÇ´Â dc »ý¼º
+	// hdcì™€ í˜¸í™˜ë˜ëŠ” dc ìƒì„±
 	_hdcBack = ::CreateCompatibleDC(_hdc);
-	// _hdc¿Í È£È¯µÇ´Â ºñÆ®¸Ê »ý¼º (ÅØ½ºÃÄ °°Àº 2d È­¸é¿ë)
+	// _hdcì™€ í˜¸í™˜ë˜ëŠ” ë¹„íŠ¸ë§µ ìƒì„± (í…ìŠ¤ì³ ê°™ì€ 2d í™”ë©´ìš©)
 	_bmpBack = ::CreateCompatibleBitmap(_hdc, _rect.right, _rect.bottom);
 
-	// dc¿Í ºñÆ®¸Ê ¿¬°á (±×¸± ÀåÄ¡¿¡ ±×¸± ÅØ½ºÃÄ¸¦ ³¢¿ö³Ö´Â ´À³¦?)
-	// ÀÌÈÄ _hdcBack¿¡ ±×·ÁÁö´Â °ÍÀº ÇØ´ç ºñÆ®¸Ê¿¡ Àû¿ëµÈ´Ù (¹ÝÈ¯°ª : ÀÌÀü¿¡ ¼±ÅÃµÈ ºñÆ®¸Ê)
+	// dcì™€ ë¹„íŠ¸ë§µ ì—°ê²° (ê·¸ë¦´ ìž¥ì¹˜ì— ê·¸ë¦´ í…ìŠ¤ì³ë¥¼ ë¼ì›Œë„£ëŠ” ëŠë‚Œ?)
+	// ì´í›„ _hdcBackì— ê·¸ë ¤ì§€ëŠ” ê²ƒì€ í•´ë‹¹ ë¹„íŠ¸ë§µì— ì ìš©ëœë‹¤ (ë°˜í™˜ê°’ : ì´ì „ì— ì„ íƒëœ ë¹„íŠ¸ë§µ)
 	HBITMAP prev = (HBITMAP)::SelectObject(_hdcBack, _bmpBack);
-	::DeleteObject(prev); // ÀÌÀü °ÍÀº »èÁ¦ (¸Þ¸ð¸® ´©¼ö ¹æÁö)
+	::DeleteObject(prev); // ì´ì „ ê²ƒì€ ì‚­ì œ (ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ ë°©ì§€)
 
 
 	GET_SINGLE(TimeManager)->Init();
@@ -42,7 +42,7 @@ void Game::Init(HWND hwnd)
 	GET_SINGLE(SceneManager)->Init();
 	GET_SINGLE(ResourceManager)->Init();
 
-	GET_SINGLE(SceneManager)->ChangeScene(SceneType::MenuScene);
+	GET_SINGLE(SceneManager)->ChangeScene(SceneType::DevScene);
 }
 
 void Game::Update()
@@ -72,22 +72,22 @@ void Game::Render()
 
 	// Double Buffering
 
-	// °í¼Ó º¹»ç (memcpy¶û ºñ½Á)
+	// ê³ ì† ë³µì‚¬ (memcpyëž‘ ë¹„ìŠ·)
 	::BitBlt(_hdc, 0, 0, _rect.right, _rect.bottom, _hdcBack, 0, 0, SRCCOPY);
-	::PatBlt(_hdcBack, 0, 0, _rect.right, _rect.bottom, WHITENESS); // ÇÏ¾á»ö Ã¤¿ì±â (»õ·Î ±×¸± ¹öÆÛ¸¦ ºñ¿öÁØ´Ù)
+	::PatBlt(_hdcBack, 0, 0, _rect.right, _rect.bottom, WHITENESS); // í•˜ì–€ìƒ‰ ì±„ìš°ê¸° (ìƒˆë¡œ ê·¸ë¦´ ë²„í¼ë¥¼ ë¹„ì›Œì¤€ë‹¤)
 
-	// ¹öÆÛ¸¦ 2°³ ¸¸µé¾î
-	// 'ÇÑ ¹ø'¿¡ ±×·ÁÁØ µÚ
-	// ÀÌÈÄ °á°ú¹°À» ¹Ù²ãÄ¡´Â ¹æ½Ä
-	// ¹öÆÛ¸¦ ÇÏ³ª »ç¿ëÇÏ¸é, 
-	// ´Ù¸¥ ÇÏ³ª¸¦ '»õ·Î' ±×¸± ¶§, µ¤¾î¾º¿ì±â ¶§¹®¿¡ '±ôºý °Å¸²'
-	// ±×·¡ÇÈ ÀÛ¾÷ÀÌ 'Á÷Á¢ÀûÀÎ DC(È­¸é ÀåÄ¡ ÄÁÅØ½ºÆ®' ¿¡¼­ ÀÌ·ç¾îÁü
+	// ë²„í¼ë¥¼ 2ê°œ ë§Œë“¤ì–´
+	// 'í•œ ë²ˆ'ì— ê·¸ë ¤ì¤€ ë’¤
+	// ì´í›„ ê²°ê³¼ë¬¼ì„ ë°”ê¿”ì¹˜ëŠ” ë°©ì‹
+	// ë²„í¼ë¥¼ í•˜ë‚˜ ì‚¬ìš©í•˜ë©´, 
+	// ë‹¤ë¥¸ í•˜ë‚˜ë¥¼ 'ìƒˆë¡œ' ê·¸ë¦´ ë•Œ, ë®ì–´ì”Œìš°ê¸° ë•Œë¬¸ì— 'ê¹œë¹¡ ê±°ë¦¼'
+	// ê·¸ëž˜í”½ ìž‘ì—…ì´ 'ì§ì ‘ì ì¸ DC(í™”ë©´ ìž¥ì¹˜ ì»¨í…ìŠ¤íŠ¸' ì—ì„œ ì´ë£¨ì–´ì§
 	// 
-	// UI¿Í Ä³¸¯ÅÍ, ÀÌÆåÆ®¸¦ ¼ø¼­´ë·Î ±×¸± ¶§,
-	// ½Ì±Û ¹öÆÛÀÎ °æ¿ì, °¢ÀÚ¸¦ '±×¸± ¶§' ¸¶´Ù È­¸éÀ» Áö¿ì°í ´Ù½Ã ±×¸®±â¿¡
-	// ¸¶Ä¡ µ¤¾î¾²°Å³ª, ±ôºý °Å¸®´Â Çö»óÀÌ º¸ÀÏ ¼ö ÀÖÀ½
-	// ±×·¯³ª ´õºí ¹öÆÛ¸µÀÇ °æ¿ì,
-	// '´Ù ±×¸° ÈÄ,' ½º¿ÍÇÎÀ» ÇØÁÖ±â¿¡ ±×·¯ÇÑ Çö»óÀÌ ¾øÀ½
+	// UIì™€ ìºë¦­í„°, ì´íŽ™íŠ¸ë¥¼ ìˆœì„œëŒ€ë¡œ ê·¸ë¦´ ë•Œ,
+	// ì‹±ê¸€ ë²„í¼ì¸ ê²½ìš°, ê°ìžë¥¼ 'ê·¸ë¦´ ë•Œ' ë§ˆë‹¤ í™”ë©´ì„ ì§€ìš°ê³  ë‹¤ì‹œ ê·¸ë¦¬ê¸°ì—
+	// ë§ˆì¹˜ ë®ì–´ì“°ê±°ë‚˜, ê¹œë¹¡ ê±°ë¦¬ëŠ” í˜„ìƒì´ ë³´ì¼ ìˆ˜ ìžˆìŒ
+	// ê·¸ëŸ¬ë‚˜ ë”ë¸” ë²„í¼ë§ì˜ ê²½ìš°,
+	// 'ë‹¤ ê·¸ë¦° í›„,' ìŠ¤ì™€í•‘ì„ í•´ì£¼ê¸°ì— ê·¸ëŸ¬í•œ í˜„ìƒì´ ì—†ìŒ
 	//
 
 }
