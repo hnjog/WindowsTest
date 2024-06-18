@@ -42,70 +42,67 @@
     <Filter Include="소스 파일\01_Managers\Game">
       <UniqueIdentifier>{60ebad12-3431-4d7d-8d54-4ac52901a7ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02_Scene\Game\Fortress">
-      <UniqueIdentifier>{e4c4dac0-e9fd-4f2c-9297-ee409f02c882}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Windows_GameCoding.h">
-      <Filter>소스 파일\00_MainGame</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="Windows_GameCoding\pch.h">
       <Filter>소스 파일\99_Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Enums.h">
-      <Filter>소스 파일\99_Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Types.h">
-      <Filter>소스 파일\99_Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Defines.h">
-      <Filter>소스 파일\99_Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="Windows_GameCoding\Resource.h">
       <Filter>소스 파일\99_Headers\Defaults</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="Windows_GameCoding\targetver.h">
       <Filter>소스 파일\99_Headers\Defaults</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="Windows_GameCoding\framework.h">
       <Filter>소스 파일\99_Headers\Defaults</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>소스 파일\00_MainGame</Filter>
+    <ClInclude Include="Windows_GameCoding\Defines.h">
+      <Filter>소스 파일\99_Headers</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
+    <ClInclude Include="Windows_GameCoding\Enums.h">
+      <Filter>소스 파일\99_Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Types.h">
+      <Filter>소스 파일\99_Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Utils.h">
+      <Filter>소스 파일\99_Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Values.h">
+      <Filter>소스 파일\99_Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\TimeManager.h">
       <Filter>소스 파일\01_Managers</Filter>
     </ClInclude>
-    <ClInclude Include="TimeManager.h">
+    <ClInclude Include="Windows_GameCoding\InputManager.h">
       <Filter>소스 파일\01_Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>소스 파일\99_Headers</Filter>
+    <ClInclude Include="Windows_GameCoding\ResourceManager.h">
+      <Filter>소스 파일\01_Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
+    <ClInclude Include="Windows_GameCoding\SceneManager.h">
+      <Filter>소스 파일\01_Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\DevScene.h">
+      <Filter>소스 파일\02_Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\EditScene.h">
+      <Filter>소스 파일\02_Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Scene.h">
       <Filter>소스 파일\02_Scene</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>소스 파일\01_Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="DevScene.h">
-      <Filter>소스 파일\02_Scene\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
+    <ClInclude Include="Windows_GameCoding\Object.h">
       <Filter>소스 파일\03_Objects</Filter>
     </ClInclude>
-    <ClInclude Include="EditScene.h">
-      <Filter>소스 파일\02_Scene\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceBase.h">
+    <ClInclude Include="Windows_GameCoding\ResourceBase.h">
       <Filter>소스 파일\04_Resources</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>소스 파일\01_Managers</Filter>
+    <ClInclude Include="Windows_GameCoding\Game.h">
+      <Filter>소스 파일\00_MainGame</Filter>
     </ClInclude>
-    <ClInclude Include="Values.h">
-      <Filter>소스 파일\99_Headers</Filter>
+    <ClInclude Include="Windows_GameCoding\Windows_GameCoding.h">
+      <Filter>소스 파일\00_MainGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,44 +119,44 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Windows_GameCoding.cpp">
-      <Filter>소스 파일\00_MainGame</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="Windows_GameCoding\pch.cpp">
       <Filter>소스 파일\99_Headers</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>소스 파일\00_MainGame</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>소스 파일\01_Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="TimeManager.cpp">
-      <Filter>소스 파일\01_Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
+    <ClCompile Include="Windows_GameCoding\Utils.cpp">
       <Filter>소스 파일\99_Headers</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
+    <ClCompile Include="Windows_GameCoding\InputManager.cpp">
+      <Filter>소스 파일\01_Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\ResourceManager.cpp">
+      <Filter>소스 파일\01_Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\SceneManager.cpp">
+      <Filter>소스 파일\01_Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\TimeManager.cpp">
+      <Filter>소스 파일\01_Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\DevScene.cpp">
+      <Filter>소스 파일\02_Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\EditScene.cpp">
+      <Filter>소스 파일\02_Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Scene.cpp">
       <Filter>소스 파일\02_Scene</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>소스 파일\01_Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="DevScene.cpp">
-      <Filter>소스 파일\02_Scene\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
+    <ClCompile Include="Windows_GameCoding\Object.cpp">
       <Filter>소스 파일\03_Objects</Filter>
     </ClCompile>
-    <ClCompile Include="EditScene.cpp">
-      <Filter>소스 파일\02_Scene\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceBase.cpp">
+    <ClCompile Include="Windows_GameCoding\ResourceBase.cpp">
       <Filter>소스 파일\04_Resources</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>소스 파일\01_Managers</Filter>
+    <ClCompile Include="Windows_GameCoding\Game.cpp">
+      <Filter>소스 파일\00_MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Windows_GameCoding.cpp">
+      <Filter>소스 파일\00_MainGame</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
