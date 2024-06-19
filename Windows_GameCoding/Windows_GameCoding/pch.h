@@ -15,19 +15,23 @@
 
 using namespace std;
 
+// c++ 20
 #include <format>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 // memory check
-// ÃßÀû? (¼­¹ö ÀÛ¾÷ µî¿¡¼± ÀÓÀÇÀÇ new¸¦ ¸¸µé¾î ÀÛ¾÷ÇÒ ¼ö ÀÖÀ½)
+// ì¶”ì ? (ì„œë²„ ìž‘ì—… ë“±ì—ì„  ìž„ì˜ì˜ newë¥¼ ë§Œë“¤ì–´ ìž‘ì—…í•  ìˆ˜ ìžˆìŒ)
 
 #define _CRTDEBG_MAP_ALLOC
 #include<cstdlib>
 #include<crtdbg.h>
 
 #ifdef _DEBUG
-// ÇöÀç ½ÇÇà ÁßÀÎ ÆÄÀÏÀÇ ¸î ¹øÂ° ÁÙ¿¡¼­ new °¡ ¼±¾ðµÇ¾ú´ÂÁö È®ÀÎ °¡´É
+// í˜„ìž¬ ì‹¤í–‰ ì¤‘ì¸ íŒŒì¼ì˜ ëª‡ ë²ˆì§¸ ì¤„ì—ì„œ new ê°€ ì„ ì–¸ë˜ì—ˆëŠ”ì§€ í™•ì¸ ê°€ëŠ¥
 #define new new(_NORMAL_BLOCK,__FILE__,__LINE__)
-// Ã¼Å©ÇÏ°í ½ÍÀº ³à¼®¿¡°Ô
+// ì²´í¬í•˜ê³  ì‹¶ì€ ë…€ì„ì—ê²Œ
 
 #endif
 

@@ -73,6 +73,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Binaries\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(SolutionDir)Windows_GameCoding\Windows_GameCoding;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Windows_GameCoding\Windows_GameCoding;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -149,6 +151,7 @@
     <ClInclude Include="Windows_GameCoding\Scene.h" />
     <ClInclude Include="Windows_GameCoding\SceneManager.h" />
     <ClInclude Include="Windows_GameCoding\targetver.h" />
+    <ClInclude Include="Windows_GameCoding\Texture.h" />
     <ClInclude Include="Windows_GameCoding\TimeManager.h" />
     <ClInclude Include="Windows_GameCoding\Types.h" />
     <ClInclude Include="Windows_GameCoding\Utils.h" />
@@ -166,6 +169,7 @@
     <ClCompile Include="Windows_GameCoding\ResourceManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Scene.cpp" />
     <ClCompile Include="Windows_GameCoding\SceneManager.cpp" />
+    <ClCompile Include="Windows_GameCoding\Texture.cpp" />
     <ClCompile Include="Windows_GameCoding\TimeManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Utils.cpp" />
     <ClCompile Include="Windows_GameCoding\Windows_GameCoding.cpp" />
