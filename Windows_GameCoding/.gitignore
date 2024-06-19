@@ -10,9 +10,13 @@
 !*.h
 !*.cpp
 !*.txt
+!*.bmp
 
 # 특정 폴더 내부의 파일 예외 처리
 !Windows_GameCoding/
+!Resources/
+!Resources/**/
+!Resources/**/*.bmp
 !Windows_GameCoding/**/*.sln
 !Windows_GameCoding/**/*.vcxproj
 !Windows_GameCoding/**/*.vcxproj.filters
