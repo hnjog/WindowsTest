@@ -92,7 +92,7 @@ struct Vector
 		return x * other.x + y * other.y;
 	}
 
-	// 2D øÎ ø‹¿˚
+	// 2D Ïö© Ïô∏Ï†Å
 	float Cross(Vector other)
 	{
 		return x * other.y - y * other.x;
@@ -102,4 +102,69 @@ struct Vector
 	float y = 0;
 };
 
+struct VectorInt
+{
+	VectorInt ( ) {}
+	VectorInt ( int32 x , int32 y ) : x ( x ) , y ( y ) {}
+	VectorInt ( POINT pt ) : x ( ( int32 ) pt.x ) , y ( ( int32 ) pt.y ) {}
+
+	VectorInt operator+( const VectorInt& other )
+	{
+		VectorInt ret;
+		ret.x = x + other.x;
+		ret.y = y + other.y;
+		return ret;
+	}
+
+	VectorInt operator-( const VectorInt& other )
+	{
+		VectorInt ret;
+		ret.x = x - other.x;
+		ret.y = y - other.y;
+		return ret;
+	}
+
+	VectorInt operator*( int32 value )
+	{
+		VectorInt ret;
+		ret.x = x * value;
+		ret.y = y * value;
+		return ret;
+	}
+
+	void operator+=( const VectorInt& other )
+	{
+		x += other.x;
+		y += other.y;
+	}
+
+	void operator-=( const VectorInt& other )
+	{
+		x -= other.x;
+		y -= other.y;
+	}
+
+	void operator*=( int32 value )
+	{
+		x *= value;
+		y *= value;
+	}
+
+	int32 Dot ( VectorInt other )
+	{
+		return x * other.x + y * other.y;
+	}
+
+	// 2D Ïö© Ïô∏Ï†Å
+	int32 Cross ( VectorInt other )
+	{
+		return x * other.y - y * other.x;
+	}
+
+	int32 x = 0;
+	int32 y = 0;
+};
+
 using Pos = Vector;
+using Vec2 = Vector;
+using Vec2Int = VectorInt;
