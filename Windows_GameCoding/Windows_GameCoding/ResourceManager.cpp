@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "ResourceManager.h"
 #include"ResourceBase.h"
+#include"Texture.h"
 
 ResourceManager::~ResourceManager ( )
 {
@@ -21,5 +22,23 @@ void ResourceManager::Init ( HWND hwnd, fs::path resourcePath )
 void ResourceManager::Clear ( )
 {
 
+}
+
+Texture* ResourceManager::LoadTexture ( const wstring& key , const wstring& path , uint32 transparent )
+{
+	if ( _textures.find ( key ) != _textures.end ( ) )
+	{
+		return _textures[ key ];
+	}
+
+	// /로 합치기
+	fs::path fullPath = _resourcePath / path;
+
+	Texture* texture = new Texture ( );
+	texture->LoadBmp ( _hwnd , fullPath.c_str ( ) );
+	texture->SetTransparent ( transparent );
+	_textures[ key ] = texture;
+
+	return texture;
 }
 
