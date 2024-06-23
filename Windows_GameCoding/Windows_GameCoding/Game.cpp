@@ -57,6 +57,8 @@ void Game::Render()
 	uint64 fps = GET_SINGLE(TimeManager)->GetFps();
 	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
 
+	GET_SINGLE ( SceneManager )->Render ( _hdcBack );
+
 	{
 		POINT mousePos = GET_SINGLE(InputManager)->GetMousePos();
 		wstring str = std::format(L"Mouse({0},{1})",mousePos.x,mousePos.y);
@@ -67,8 +69,6 @@ void Game::Render()
 		wstring str = std::format(L"FPS({0}), DT({1} ms)", fps, static_cast<int32>(deltaTime * 1000));
 		::TextOut(_hdcBack, 650, 10, str.c_str(), static_cast<int32>(str.size()));
 	}
-	
-	GET_SINGLE(SceneManager)->Render(_hdcBack);
 
 	// Double Buffering
 

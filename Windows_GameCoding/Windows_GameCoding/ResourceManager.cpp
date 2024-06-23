@@ -21,7 +21,10 @@ void ResourceManager::Init ( HWND hwnd, fs::path resourcePath )
 
 void ResourceManager::Clear ( )
 {
+	for ( auto& item : _textures )
+		SAFE_DELETE ( item.second );
 
+	_textures.clear ( );
 }
 
 Texture* ResourceManager::LoadTexture ( const wstring& key , const wstring& path , uint32 transparent )
