@@ -2,6 +2,7 @@
 #include "ResourceManager.h"
 #include"ResourceBase.h"
 #include"Texture.h"
+#include"Sprite.h"
 
 ResourceManager::~ResourceManager ( )
 {
@@ -43,5 +44,22 @@ Texture* ResourceManager::LoadTexture ( const wstring& key , const wstring& path
 	_textures[ key ] = texture;
 
 	return texture;
+}
+
+Sprite* ResourceManager::CreateSprite ( const wstring& key , Texture* texture , int32 x , int32 y , int32 cx , int32 cy )
+{
+	if ( _sprites.find ( key ) != _sprites.end ( ) )
+		return _sprites[ key ];
+
+	if ( cx == 0 )
+		cx = texture->GetSize ( ).x;
+
+	if ( cy == 0 )
+		cy = texture->GetSize ( ).y;
+
+	Sprite* sprite = new Sprite ( texture , x , y , cx , cy );
+	_sprites[ key ] = sprite;
+
+	return sprite;
 }
 

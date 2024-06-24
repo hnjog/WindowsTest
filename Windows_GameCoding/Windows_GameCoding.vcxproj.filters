@@ -107,6 +107,9 @@
     <ClInclude Include="Windows_GameCoding\Texture.h">
       <Filter>소스 파일\04_Resources</Filter>
     </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Sprite.h">
+      <Filter>소스 파일\04_Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Windows_GameCoding.rc">
@@ -162,6 +165,9 @@
       <Filter>소스 파일\00_MainGame</Filter>
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\Texture.cpp">
+      <Filter>소스 파일\04_Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Sprite.cpp">
       <Filter>소스 파일\04_Resources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -150,6 +150,7 @@
     <ClInclude Include="Windows_GameCoding\ResourceManager.h" />
     <ClInclude Include="Windows_GameCoding\Scene.h" />
     <ClInclude Include="Windows_GameCoding\SceneManager.h" />
+    <ClInclude Include="Windows_GameCoding\Sprite.h" />
     <ClInclude Include="Windows_GameCoding\targetver.h" />
     <ClInclude Include="Windows_GameCoding\Texture.h" />
     <ClInclude Include="Windows_GameCoding\TimeManager.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="Windows_GameCoding\ResourceManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Scene.cpp" />
     <ClCompile Include="Windows_GameCoding\SceneManager.cpp" />
+    <ClCompile Include="Windows_GameCoding\Sprite.cpp" />
     <ClCompile Include="Windows_GameCoding\Texture.cpp" />
     <ClCompile Include="Windows_GameCoding\TimeManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Utils.cpp" />
