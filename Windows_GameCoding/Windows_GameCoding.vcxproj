@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Windows_GameCoding\Actor.h" />
     <ClInclude Include="Windows_GameCoding\Defines.h" />
     <ClInclude Include="Windows_GameCoding\DevScene.h" />
     <ClInclude Include="Windows_GameCoding\EditScene.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Windows_GameCoding\Scene.h" />
     <ClInclude Include="Windows_GameCoding\SceneManager.h" />
     <ClInclude Include="Windows_GameCoding\Sprite.h" />
+    <ClInclude Include="Windows_GameCoding\SpriteActor.h" />
     <ClInclude Include="Windows_GameCoding\targetver.h" />
     <ClInclude Include="Windows_GameCoding\Texture.h" />
     <ClInclude Include="Windows_GameCoding\TimeManager.h" />
@@ -160,6 +162,7 @@
     <ClInclude Include="Windows_GameCoding\Windows_GameCoding.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Windows_GameCoding\Actor.cpp" />
     <ClCompile Include="Windows_GameCoding\DevScene.cpp" />
     <ClCompile Include="Windows_GameCoding\EditScene.cpp" />
     <ClCompile Include="Windows_GameCoding\Game.cpp" />
@@ -171,6 +174,7 @@
     <ClCompile Include="Windows_GameCoding\Scene.cpp" />
     <ClCompile Include="Windows_GameCoding\SceneManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Sprite.cpp" />
+    <ClCompile Include="Windows_GameCoding\SpriteActor.cpp" />
     <ClCompile Include="Windows_GameCoding\Texture.cpp" />
     <ClCompile Include="Windows_GameCoding\TimeManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Utils.cpp" />

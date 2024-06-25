@@ -1,21 +1,20 @@
 #pragma once
 #include "Scene.h"
 
-class DevScene :
-	public Scene
+class Actor;
+
+class DevScene : public Scene
 {
 public:
 	DevScene();
 	virtual ~DevScene();
 
-	// ¼ø¼ö °¡»ó ÇÔ¼ö
+	// ìˆœìˆ˜ ê°€ìƒ í•¨ìˆ˜
 	virtual void Init() override;
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
 
 public:
-	// TEST
-	Pos _playerPos = { 300,300 };
-	float _speed = 1000;
+	Actor* _background;
 };
 

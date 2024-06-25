@@ -110,6 +110,12 @@
     <ClInclude Include="Windows_GameCoding\Sprite.h">
       <Filter>소스 파일\04_Resources</Filter>
     </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Actor.h">
+      <Filter>소스 파일\03_Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\SpriteActor.h">
+      <Filter>소스 파일\03_Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Windows_GameCoding.rc">
@@ -169,6 +175,12 @@
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\Sprite.cpp">
       <Filter>소스 파일\04_Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Actor.cpp">
+      <Filter>소스 파일\03_Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\SpriteActor.cpp">
+      <Filter>소스 파일\03_Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

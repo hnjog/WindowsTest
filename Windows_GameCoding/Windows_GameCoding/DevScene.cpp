@@ -5,6 +5,8 @@
 #include"ResourceManager.h"
 #include"Texture.h"
 #include"Sprite.h"
+#include"Actor.h"
+#include"SpriteActor.h"
 
 DevScene::DevScene ( )
 {
@@ -28,24 +30,43 @@ void DevScene::Init ( )
 	GET_SINGLE ( ResourceManager )->LoadTexture ( L"Edit" , L"Sprite\\UI\\Edit.bmp" );
 	GET_SINGLE ( ResourceManager )->LoadTexture ( L"Exit" , L"Sprite\\UI\\Exit.bmp" );
 
-	Texture* tex = GET_SINGLE ( ResourceManager )->GetTexture ( L"Start" );
-	GET_SINGLE ( ResourceManager )->CreateSprite ( L"Start_off" , tex , 150 , 0 , 150 , 150 );
+	GET_SINGLE ( ResourceManager )->CreateSprite ( L"Stage01" , GET_SINGLE ( ResourceManager )->GetTexture ( L"Stage01" ) );
+	GET_SINGLE ( ResourceManager )->CreateSprite ( L"TileO" , GET_SINGLE ( ResourceManager )->GetTexture ( L"Tile" ) , 0 , 0 , 48 , 48 );
+	GET_SINGLE ( ResourceManager )->CreateSprite ( L"TileX" , GET_SINGLE ( ResourceManager )->GetTexture ( L"Tile" ) , 48 , 0 , 48 , 48 );
+	GET_SINGLE ( ResourceManager )->CreateSprite ( L"Start_Off" , GET_SINGLE ( ResourceManager )->GetTexture ( L"Start" ) , 0 , 0 , 150 , 150 );
+	GET_SINGLE ( ResourceManager )->CreateSprite ( L"Start_On" , GET_SINGLE ( ResourceManager )->GetTexture ( L"Start" ) , 150 , 0 , 150 , 150 );
+	GET_SINGLE ( ResourceManager )->CreateSprite ( L"Edit_Off" , GET_SINGLE ( ResourceManager )->GetTexture ( L"Edit" ) , 0 , 0 , 150 , 150 );
+	GET_SINGLE ( ResourceManager )->CreateSprite ( L"Edit_On" , GET_SINGLE ( ResourceManager )->GetTexture ( L"Edit" ) , 150 , 0 , 150 , 150 );
+	GET_SINGLE ( ResourceManager )->CreateSprite ( L"Exit_Off" , GET_SINGLE ( ResourceManager )->GetTexture ( L"Exit" ) , 0 , 0 , 150 , 150 );
+	GET_SINGLE ( ResourceManager )->CreateSprite ( L"Exit_On" , GET_SINGLE ( ResourceManager )->GetTexture ( L"Exit" ) , 150 , 0 , 150 , 150 );
+
+	{
+		Sprite* sprite = GET_SINGLE ( ResourceManager )->GetSprite ( L"Stage01" );
+
+		SpriteActor* background = new SpriteActor ( );
+		background->SetSprite ( sprite );
+
+		background->SetPos ( Vec2{ 0,0 } );
+
+		_background = background;
+	}
 }
 
 void DevScene::Update ( )
 {
 	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
 
+	_background->Tick ( );
 }
 
 void DevScene::Render ( HDC hdc )
 {
 	//Texture* tex = GET_SINGLE ( ResourceManager )->GetTexture ( L"Stage01" );
-	Sprite* sprite = GET_SINGLE ( ResourceManager )->GetSprite ( L"Start_off" );
-
-	//::BitBlt ( hdc , 0 , 0 , GWinSizeX , GWinSizeY , tex->GetDC ( ),0,0,SRCCOPY );
-	::BitBlt ( hdc , 0 , 0 , GWinSizeX , GWinSizeY , sprite->GetDC ( ) ,
-		sprite->GetPos ( ).x ,
-		sprite->GetPos ( ).y ,
-		SRCCOPY );
+	//Sprite* sprite = GET_SINGLE ( ResourceManager )->GetSprite ( L"Start_On" );
+	_background->Render ( hdc );
+	////::BitBlt ( hdc , 0 , 0 , GWinSizeX , GWinSizeY , tex->GetDC ( ),0,0,SRCCOPY );
+	//::BitBlt ( hdc , 0 , 0 , GWinSizeX , GWinSizeY , sprite->GetDC ( ) ,
+	//	sprite->GetPos ( ).x ,
+	//	sprite->GetPos ( ).y ,
+	//	SRCCOPY );
 }
