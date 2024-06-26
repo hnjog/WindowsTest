@@ -15,7 +15,6 @@ public:
 	virtual void Render(HDC hdc) override;
 
 public:
-	Actor* _background = nullptr;
-	Actor* _player = nullptr;
+	vector<Actor*> _actors;
 };
 
