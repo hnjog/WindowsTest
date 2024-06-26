@@ -42,6 +42,18 @@
     <Filter Include="소스 파일\01_Managers\Game">
       <UniqueIdentifier>{60ebad12-3431-4d7d-8d54-4ac52901a7ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03_Objects\Unreal">
+      <UniqueIdentifier>{bf6b803a-0d3f-4e07-bc84-e4de26e5eac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03_Objects\Unity">
+      <UniqueIdentifier>{6e25c214-c35d-446a-b414-2ce74f250825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05_Component">
+      <UniqueIdentifier>{7f0b50c7-8130-4a49-8448-852f200298a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05_Component\Game">
+      <UniqueIdentifier>{69f3a3d7-a5d9-4191-8f80-c5e4be911eb4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows_GameCoding\pch.h">
@@ -110,14 +122,26 @@
     <ClInclude Include="Windows_GameCoding\Sprite.h">
       <Filter>소스 파일\04_Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Windows_GameCoding\Actor.h">
-      <Filter>소스 파일\03_Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows_GameCoding\SpriteActor.h">
-      <Filter>소스 파일\03_Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Windows_GameCoding\Player.h">
       <Filter>소스 파일\03_Objects\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Actor.h">
+      <Filter>소스 파일\03_Objects\Unreal</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\SpriteActor.h">
+      <Filter>소스 파일\03_Objects\Unreal</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\GameObject.h">
+      <Filter>소스 파일\03_Objects\Unity</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Component.h">
+      <Filter>소스 파일\05_Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\SpriteRenderer.h">
+      <Filter>소스 파일\05_Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\PlayerMoveScript.h">
+      <Filter>소스 파일\05_Component\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,14 +203,26 @@
     <ClCompile Include="Windows_GameCoding\Sprite.cpp">
       <Filter>소스 파일\04_Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Windows_GameCoding\Actor.cpp">
-      <Filter>소스 파일\03_Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Windows_GameCoding\SpriteActor.cpp">
-      <Filter>소스 파일\03_Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Windows_GameCoding\Player.cpp">
       <Filter>소스 파일\03_Objects\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Actor.cpp">
+      <Filter>소스 파일\03_Objects\Unreal</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\SpriteActor.cpp">
+      <Filter>소스 파일\03_Objects\Unreal</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\GameObject.cpp">
+      <Filter>소스 파일\03_Objects\Unity</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Component.cpp">
+      <Filter>소스 파일\05_Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\SpriteRenderer.cpp">
+      <Filter>소스 파일\05_Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\PlayerMoveScript.cpp">
+      <Filter>소스 파일\05_Component\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
