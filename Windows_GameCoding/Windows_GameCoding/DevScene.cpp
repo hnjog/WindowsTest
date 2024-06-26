@@ -48,8 +48,8 @@ void DevScene::Init ( )
 		background->SetSprite ( sprite );
 
 		const Vec2Int size = sprite->GetSize ( );
-		background->SetPos ( Vec2( size.x/2,size.y/2 ) );
-		_background = background;
+		background->SetPos ( Vec2 ( size.x / 2 , size.y / 2 ) );
+		_actors.push_back ( background );
 	}
 
 	{
@@ -60,11 +60,13 @@ void DevScene::Init ( )
 
 		const Vec2Int size = sprite->GetSize ( );
 		player->SetPos ( Vec2 ( size.x / 2 , size.y / 2 ) );
-		_player = player;
+		_actors.push_back ( player );
 	}
 
-	_background->BeginPlay ( );
-	_player->BeginPlay ( );
+	for ( Actor* actor : _actors )
+	{
+		actor->BeginPlay ( );
+	}
 
 }
 
@@ -72,12 +74,16 @@ void DevScene::Update ( )
 {
 	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
 
-	_background->Tick ( );
-	_player->Tick ( );
+	for ( Actor* actor : _actors )
+	{
+		actor->Tick ( );
+	}
 }
 
 void DevScene::Render ( HDC hdc )
 {
-	_background->Render ( hdc );
-	_player->Render ( hdc );
+	for ( Actor* actor : _actors )
+	{
+		actor->Render ( hdc );
+	}
 }
