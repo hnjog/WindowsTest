@@ -7,6 +7,7 @@
 #include"Sprite.h"
 #include"Actor.h"
 #include"SpriteActor.h"
+#include"Player.h"
 
 DevScene::DevScene ( )
 {
@@ -46,10 +47,24 @@ void DevScene::Init ( )
 		SpriteActor* background = new SpriteActor ( );
 		background->SetSprite ( sprite );
 
-		background->SetPos ( Vec2{ 0,0 } );
-
+		const Vec2Int size = sprite->GetSize ( );
+		background->SetPos ( Vec2( size.x/2,size.y/2 ) );
 		_background = background;
 	}
+
+	{
+		Sprite* sprite = GET_SINGLE ( ResourceManager )->GetSprite ( L"Start_On" );
+
+		Player* player = new Player ( );
+		player->SetSprite ( sprite );
+
+		const Vec2Int size = sprite->GetSize ( );
+		player->SetPos ( Vec2 ( size.x / 2 , size.y / 2 ) );
+		_player = player;
+	}
+
+	_background->BeginPlay ( );
+	_player->BeginPlay ( );
 }
 
 void DevScene::Update ( )
@@ -57,16 +72,12 @@ void DevScene::Update ( )
 	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
 
 	_background->Tick ( );
+	_player->Tick ( );
 }
 
 void DevScene::Render ( HDC hdc )
 {
-	//Texture* tex = GET_SINGLE ( ResourceManager )->GetTexture ( L"Stage01" );
-	//Sprite* sprite = GET_SINGLE ( ResourceManager )->GetSprite ( L"Start_On" );
 	_background->Render ( hdc );
-	////::BitBlt ( hdc , 0 , 0 , GWinSizeX , GWinSizeY , tex->GetDC ( ),0,0,SRCCOPY );
-	//::BitBlt ( hdc , 0 , 0 , GWinSizeX , GWinSizeY , sprite->GetDC ( ) ,
-	//	sprite->GetPos ( ).x ,
-	//	sprite->GetPos ( ).y ,
-	//	SRCCOPY );
+	_player->Render ( hdc );
+
 }

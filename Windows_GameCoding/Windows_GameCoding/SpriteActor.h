@@ -17,7 +17,7 @@ public:
 
 	void SetSprite ( Sprite* sprite ) { _sprite = sprite; }
 
-private:
+protected:
 	Sprite* _sprite = nullptr;
 
 };

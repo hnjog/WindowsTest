@@ -146,6 +146,7 @@
     <ClInclude Include="Windows_GameCoding\InputManager.h" />
     <ClInclude Include="Windows_GameCoding\Object.h" />
     <ClInclude Include="Windows_GameCoding\pch.h" />
+    <ClInclude Include="Windows_GameCoding\Player.h" />
     <ClInclude Include="Windows_GameCoding\Resource.h" />
     <ClInclude Include="Windows_GameCoding\ResourceBase.h" />
     <ClInclude Include="Windows_GameCoding\ResourceManager.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="Windows_GameCoding\InputManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Object.cpp" />
     <ClCompile Include="Windows_GameCoding\pch.cpp" />
+    <ClCompile Include="Windows_GameCoding\Player.cpp" />
     <ClCompile Include="Windows_GameCoding\ResourceBase.cpp" />
     <ClCompile Include="Windows_GameCoding\ResourceManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Scene.cpp" />
