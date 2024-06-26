@@ -8,9 +8,6 @@
 #include"Actor.h"
 #include"SpriteActor.h"
 #include"Player.h"
-#include"GameObject.h"
-#include"SpriteRenderer.h"
-#include"PlayerMoveScript.h"
 
 DevScene::DevScene ( )
 {
@@ -66,30 +63,9 @@ void DevScene::Init ( )
 		_player = player;
 	}
 
-	{
-		// 컴포넌트 방식
-		GameObject* player = new GameObject ( );
-		player->SetPos ( { 500,500 } );
-
-		{
-			Sprite* sprite = GET_SINGLE ( ResourceManager )->GetSprite ( L"Start_On" );
-			SpriteRenderer* sr = new SpriteRenderer ( );
-			sr->SetSprite ( sprite );
-			player->AddComponent ( sr );
-		}
-
-		{
-			PlayerMoveScript* pm = new PlayerMoveScript ( );
-			player->AddComponent ( pm );
-		}
-
-		_go = player;
-	}
-
 	_background->BeginPlay ( );
 	_player->BeginPlay ( );
 
-	_go->Start ( );
 }
 
 void DevScene::Update ( )
@@ -98,12 +74,10 @@ void DevScene::Update ( )
 
 	_background->Tick ( );
 	_player->Tick ( );
-	_go->Update ( );
 }
 
 void DevScene::Render ( HDC hdc )
 {
 	_background->Render ( hdc );
 	_player->Render ( hdc );
-	_go->Render ( hdc );
 }

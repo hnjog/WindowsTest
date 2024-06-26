@@ -2,7 +2,6 @@
 #include "Scene.h"
 
 class Actor;
-class GameObject;
 
 class DevScene : public Scene
 {
@@ -18,7 +17,5 @@ public:
 public:
 	Actor* _background = nullptr;
 	Actor* _player = nullptr;
-
-	GameObject* _go = nullptr;
 };
 
