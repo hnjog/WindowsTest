@@ -142,6 +142,8 @@
     <ClInclude Include="Windows_GameCoding\DevScene.h" />
     <ClInclude Include="Windows_GameCoding\EditScene.h" />
     <ClInclude Include="Windows_GameCoding\Enums.h" />
+    <ClInclude Include="Windows_GameCoding\Flipbook.h" />
+    <ClInclude Include="Windows_GameCoding\FlipbookActor.h" />
     <ClInclude Include="Windows_GameCoding\framework.h" />
     <ClInclude Include="Windows_GameCoding\Game.h" />
     <ClInclude Include="Windows_GameCoding\InputManager.h" />
@@ -168,6 +170,8 @@
     <ClCompile Include="Windows_GameCoding\Component.cpp" />
     <ClCompile Include="Windows_GameCoding\DevScene.cpp" />
     <ClCompile Include="Windows_GameCoding\EditScene.cpp" />
+    <ClCompile Include="Windows_GameCoding\Flipbook.cpp" />
+    <ClCompile Include="Windows_GameCoding\FlipbookActor.cpp" />
     <ClCompile Include="Windows_GameCoding\Game.cpp" />
     <ClCompile Include="Windows_GameCoding\InputManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Object.cpp" />

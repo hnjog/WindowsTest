@@ -131,6 +131,12 @@
     <ClInclude Include="Windows_GameCoding\Component.h">
       <Filter>소스 파일\05_Component</Filter>
     </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Flipbook.h">
+      <Filter>소스 파일\04_Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\FlipbookActor.h">
+      <Filter>소스 파일\03_Objects\Unreal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Windows_GameCoding.rc">
@@ -202,6 +208,12 @@
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\Component.cpp">
       <Filter>소스 파일\05_Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Flipbook.cpp">
+      <Filter>소스 파일\04_Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\FlipbookActor.cpp">
+      <Filter>소스 파일\03_Objects\Unreal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
