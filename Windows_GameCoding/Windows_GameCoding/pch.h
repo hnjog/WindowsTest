@@ -35,4 +35,17 @@ namespace fs = std::filesystem;
 
 #endif
 
+// 특정한 라이브러리를 링커에게 링크하도록 지시
+// #include 와의 비교
+// #include 는 '전처리기 지시문' 이라서
+// '컴파일 이전에 미리 복붙' -> 실행 파일 용량 커짐 +
+// 라이브러리 크기에 따라서 컴파일 시간이 늘어날 수 있음
+// 
+// 반면 #pragma comment 는
+// '링크 지시문' 이기에 실행 파일의 크기를 줄일 수 있으며,
+// 컴파일 시간 역시 줄일 수 있음
+// 다만, 일부 플랫폼에 종속적(ex : Windows)이다 (+ 가독성 이슈)
+//
+#pragma comment(lib,"msimg32.lib")
+
 #include"Utils.h"
