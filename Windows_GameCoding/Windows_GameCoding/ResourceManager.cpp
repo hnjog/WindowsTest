@@ -3,6 +3,7 @@
 #include"ResourceBase.h"
 #include"Texture.h"
 #include"Sprite.h"
+#include"Flipbook.h"
 
 ResourceManager::~ResourceManager ( )
 {
@@ -61,5 +62,16 @@ Sprite* ResourceManager::CreateSprite ( const wstring& key , Texture* texture , 
 	_sprites[ key ] = sprite;
 
 	return sprite;
+}
+
+Flipbook* ResourceManager::CreateFlipbook ( const wstring& key )
+{
+	if ( _flipbooks.find ( key ) != _flipbooks.end ( ) )
+		return _flipbooks[ key ];
+
+	Flipbook* fb = new Flipbook ( );
+	_flipbooks[ key ] = fb;
+
+	return fb;
 }
 
