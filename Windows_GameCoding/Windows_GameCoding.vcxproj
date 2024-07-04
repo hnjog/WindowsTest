@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Windows_GameCoding\Actor.h" />
+    <ClInclude Include="Windows_GameCoding\CameraComponent.h" />
     <ClInclude Include="Windows_GameCoding\Component.h" />
     <ClInclude Include="Windows_GameCoding\Defines.h" />
     <ClInclude Include="Windows_GameCoding\DevScene.h" />
@@ -167,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Windows_GameCoding\Actor.cpp" />
+    <ClCompile Include="Windows_GameCoding\CameraComponent.cpp" />
     <ClCompile Include="Windows_GameCoding\Component.cpp" />
     <ClCompile Include="Windows_GameCoding\DevScene.cpp" />
     <ClCompile Include="Windows_GameCoding\EditScene.cpp" />

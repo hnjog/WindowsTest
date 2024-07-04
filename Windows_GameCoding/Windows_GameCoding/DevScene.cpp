@@ -16,10 +16,17 @@ DevScene::DevScene ( )
 
 DevScene::~DevScene ( )
 {
-	for ( auto& actor : _actors )
-		SAFE_DELETE ( actor );
 
-	_actors.clear ( );
+	for ( vector<Actor*>& actors : _actors )
+	{
+		for ( Actor* actor : actors )
+		{
+
+			SAFE_DELETE ( actor );
+		}
+
+		actors.clear ( );
+	}
 }
 
 void DevScene::Init ( )
@@ -71,25 +78,31 @@ void DevScene::Init ( )
 	}
 
 	{
+		Player* player = new Player ( );
+		AddActor ( player );
+	}
+
+	{
 		Sprite* sprite = GET_SINGLE ( ResourceManager )->GetSprite ( L"Stage01" );
 
 		SpriteActor* background = new SpriteActor ( );
 		background->SetSprite ( sprite );
-
+		background->SetLayer ( LAYER_BACKGROUND );
 		const Vec2Int size = sprite->GetSize ( );
 		background->SetPos ( Vec2 ( size.x / 2 , size.y / 2 ) );
-		_actors.push_back ( background );
+		AddActor ( background );
 	}
 
+
+
+	for ( const vector<Actor*>& actors : _actors )
 	{
-		Player* player = new Player ( );
-		_actors.push_back ( player );
+		for ( Actor* actor : actors )
+		{
+			actor->BeginPlay ( );
+		}
 	}
 
-	for ( Actor* actor : _actors )
-	{
-		actor->BeginPlay ( );
-	}
 
 }
 
@@ -97,16 +110,43 @@ void DevScene::Update ( )
 {
 	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
 
-	for ( Actor* actor : _actors )
+	for ( const vector<Actor*>& actors : _actors )
 	{
-		actor->Tick ( );
+		for ( Actor* actor : actors )
+		{
+			actor->Tick ( );
+		}
 	}
 }
 
 void DevScene::Render ( HDC hdc )
 {
-	for ( Actor* actor : _actors )
+
+	for ( const vector<Actor*>& actors : _actors )
 	{
-		actor->Render ( hdc );
+		for ( Actor* actor : actors )
+		{
+			actor->Render ( hdc );
+		}
 	}
+}
+
+void DevScene::AddActor ( Actor* actor )
+{
+	if ( actor == nullptr )
+		return;
+
+	_actors[ actor->GetLayer ( ) ].push_back ( actor );
+}
+
+void DevScene::RemoveActor ( Actor* actor )
+{
+	if ( actor == nullptr )
+		return;
+
+	vector<Actor*>& v = _actors[ actor->GetLayer ( ) ];
+
+	// std::remove는 삭제할 위치를 찾아주는 것임을 잊지말자
+	auto findIt = std::remove ( v.begin ( ) , v.end ( ) , actor );
+	v.erase ( findIt,v.end() );
 }
