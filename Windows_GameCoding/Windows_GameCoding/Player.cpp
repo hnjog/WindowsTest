@@ -7,12 +7,10 @@
 
 Player::Player ( )
 {
-	{
-		Texture* texture = GET_SINGLE ( ResourceManager )->GetTexture ( L"PlayerUp" );
-		Flipbook* fb = GET_SINGLE(ResourceManager)->CreateFlipbook(L"FB_MoveUp");
-		fb->SetInfo ( { texture,L"FB_MoveUp",{200,200},0,9,1,0.5f } );
-	}
-	
+	_flipbookUp = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveUp" );
+	_flipbookDown = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveDown" );
+	_flipbookLeft = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveLeft" );
+	_flipbookRight = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveRight" );
 }
 
 Player::~Player ( )
@@ -22,15 +20,37 @@ Player::~Player ( )
 void Player::BeginPlay ( )
 {
 	Super::BeginPlay ( );
+
+	SetFlipbook ( _flipbookRight );
+
 }
 
 void Player::Tick ( )
 {
 	Super::Tick ( );
 
+	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
+	const float speed = 200.f;
+
 	if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::W ) )
 	{
-
+		_pos.y -= speed * delta;
+		SetFlipbook ( _flipbookUp );
+	}
+	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::S ) )
+	{
+		_pos.y += speed * delta;
+		SetFlipbook ( _flipbookDown );
+	}
+	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::A ) )
+	{
+		_pos.x -= speed * delta;
+		SetFlipbook ( _flipbookLeft );
+	}
+	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::D ) )
+	{
+		_pos.x += speed * delta;
+		SetFlipbook ( _flipbookRight );
 	}
 }
 

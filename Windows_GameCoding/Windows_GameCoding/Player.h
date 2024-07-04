@@ -2,6 +2,8 @@
 
 #include"FlipbookActor.h"
 
+class Flipbook;
+
 class Player : public FlipbookActor
 {
 	using Super = FlipbookActor;
@@ -15,5 +17,8 @@ public:
 	virtual void Render ( HDC hdc )override;
 
 protected:
-
+	Flipbook* _flipbookUp = nullptr;
+	Flipbook* _flipbookDown = nullptr;
+	Flipbook* _flipbookLeft = nullptr;
+	Flipbook* _flipbookRight = nullptr;
 };

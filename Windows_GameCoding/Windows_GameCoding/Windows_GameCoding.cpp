@@ -1,4 +1,4 @@
-﻿// Windows_GameCoding.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+// Windows_GameCoding.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 #include"pch.h"
 #include "framework.h"
@@ -64,7 +64,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			uint64 now = ::GetTickCount64();
 
 			// 프레임이 너무 늘어나는 것을 막을 수 있음
-			if (now - prevTick >= 10)
+			//if (now - prevTick >= 10)
 			{
 				// Game Logic 
 				game.Update();

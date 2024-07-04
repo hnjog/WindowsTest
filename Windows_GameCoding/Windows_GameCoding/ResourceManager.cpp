@@ -27,6 +27,16 @@ void ResourceManager::Clear ( )
 		SAFE_DELETE ( item.second );
 
 	_textures.clear ( );
+
+	for ( auto& item : _sprites )
+		SAFE_DELETE ( item.second );
+
+	_sprites.clear ( );
+
+	for ( auto& item : _flipbooks )
+		SAFE_DELETE ( item.second );
+
+	_flipbooks.clear ( );
 }
 
 Texture* ResourceManager::LoadTexture ( const wstring& key , const wstring& path , uint32 transparent )

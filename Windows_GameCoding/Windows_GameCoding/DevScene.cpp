@@ -8,6 +8,7 @@
 #include"Actor.h"
 #include"SpriteActor.h"
 #include"Player.h"
+#include"Flipbook.h"
 
 DevScene::DevScene ( )
 {
@@ -15,6 +16,10 @@ DevScene::DevScene ( )
 
 DevScene::~DevScene ( )
 {
+	for ( auto& actor : _actors )
+		SAFE_DELETE ( actor );
+
+	_actors.clear ( );
 }
 
 void DevScene::Init ( )
@@ -42,6 +47,30 @@ void DevScene::Init ( )
 	GET_SINGLE ( ResourceManager )->CreateSprite ( L"Exit_On" , GET_SINGLE ( ResourceManager )->GetTexture ( L"Exit" ) , 150 , 0 , 150 , 150 );
 
 	{
+		Texture* texture = GET_SINGLE ( ResourceManager )->GetTexture ( L"PlayerUp" );
+		Flipbook* fb = GET_SINGLE ( ResourceManager )->CreateFlipbook ( L"FB_MoveUp" );
+		fb->SetInfo ( { texture,L"FB_MoveUp",{200,200},0,9,1,0.5f } );
+	}
+
+	{
+		Texture* texture = GET_SINGLE ( ResourceManager )->GetTexture ( L"PlayerDown" );
+		Flipbook* fb = GET_SINGLE ( ResourceManager )->CreateFlipbook ( L"FB_MoveDown" );
+		fb->SetInfo ( { texture,L"FB_MoveDown",{200,200},0,9,1,0.5f } );
+	}
+
+	{
+		Texture* texture = GET_SINGLE ( ResourceManager )->GetTexture ( L"PlayerLeft" );
+		Flipbook* fb = GET_SINGLE ( ResourceManager )->CreateFlipbook ( L"FB_MoveLeft" );
+		fb->SetInfo ( { texture,L"FB_MoveLeft",{200,200},0,9,1,0.5f } );
+	}
+
+	{
+		Texture* texture = GET_SINGLE ( ResourceManager )->GetTexture ( L"PlayerRight" );
+		Flipbook* fb = GET_SINGLE ( ResourceManager )->CreateFlipbook ( L"FB_MoveRight" );
+		fb->SetInfo ( { texture,L"FB_MoveRight",{200,200},0,9,1,0.5f } );
+	}
+
+	{
 		Sprite* sprite = GET_SINGLE ( ResourceManager )->GetSprite ( L"Stage01" );
 
 		SpriteActor* background = new SpriteActor ( );
@@ -53,13 +82,7 @@ void DevScene::Init ( )
 	}
 
 	{
-		Sprite* sprite = GET_SINGLE ( ResourceManager )->GetSprite ( L"Start_On" );
-
 		Player* player = new Player ( );
-		player->SetSprite ( sprite );
-
-		const Vec2Int size = sprite->GetSize ( );
-		player->SetPos ( Vec2 ( size.x / 2 , size.y / 2 ) );
 		_actors.push_back ( player );
 	}
 
