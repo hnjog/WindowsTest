@@ -1,10 +1,10 @@
 #pragma once
 
-#include"SpriteActor.h"
+#include"FlipbookActor.h"
 
-class Player : public SpriteActor
+class Player : public FlipbookActor
 {
-	using Super = SpriteActor;
+	using Super = FlipbookActor;
 
 public:
 	Player ( );
