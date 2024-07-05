@@ -51,6 +51,12 @@
     <Filter Include="소스 파일\05_Component\Game">
       <UniqueIdentifier>{69f3a3d7-a5d9-4191-8f80-c5e4be911eb4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\05_Component\Camera">
+      <UniqueIdentifier>{96139e0f-fbd7-49ed-b980-b51225f8d20e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05_Component\Collision">
+      <UniqueIdentifier>{94e50f4a-a1e7-428a-98c3-c0b3398577a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows_GameCoding\pch.h">
@@ -138,7 +144,10 @@
       <Filter>소스 파일\03_Objects\Unreal</Filter>
     </ClInclude>
     <ClInclude Include="Windows_GameCoding\CameraComponent.h">
-      <Filter>소스 파일\05_Component</Filter>
+      <Filter>소스 파일\05_Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Collider.h">
+      <Filter>소스 파일\05_Component\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +228,10 @@
       <Filter>소스 파일\03_Objects\Unreal</Filter>
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\CameraComponent.cpp">
-      <Filter>소스 파일\05_Component</Filter>
+      <Filter>소스 파일\05_Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Collider.cpp">
+      <Filter>소스 파일\05_Component\Collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
