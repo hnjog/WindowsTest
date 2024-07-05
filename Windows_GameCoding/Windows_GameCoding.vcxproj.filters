@@ -149,6 +149,12 @@
     <ClInclude Include="Windows_GameCoding\Collider.h">
       <Filter>소스 파일\05_Component\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="Windows_GameCoding\BoxCollider.h">
+      <Filter>소스 파일\05_Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\SphereCollider.h">
+      <Filter>소스 파일\05_Component\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Windows_GameCoding.rc">
@@ -231,6 +237,12 @@
       <Filter>소스 파일\05_Component\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\Collider.cpp">
+      <Filter>소스 파일\05_Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\BoxCollider.cpp">
+      <Filter>소스 파일\05_Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\SphereCollider.cpp">
       <Filter>소스 파일\05_Component\Collision</Filter>
     </ClCompile>
   </ItemGroup>

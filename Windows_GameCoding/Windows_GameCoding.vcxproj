@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Windows_GameCoding\Actor.h" />
+    <ClInclude Include="Windows_GameCoding\BoxCollider.h" />
     <ClInclude Include="Windows_GameCoding\CameraComponent.h" />
     <ClInclude Include="Windows_GameCoding\Collider.h" />
     <ClInclude Include="Windows_GameCoding\Component.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Windows_GameCoding\ResourceManager.h" />
     <ClInclude Include="Windows_GameCoding\Scene.h" />
     <ClInclude Include="Windows_GameCoding\SceneManager.h" />
+    <ClInclude Include="Windows_GameCoding\SphereCollider.h" />
     <ClInclude Include="Windows_GameCoding\Sprite.h" />
     <ClInclude Include="Windows_GameCoding\SpriteActor.h" />
     <ClInclude Include="Windows_GameCoding\targetver.h" />
@@ -169,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Windows_GameCoding\Actor.cpp" />
+    <ClCompile Include="Windows_GameCoding\BoxCollider.cpp" />
     <ClCompile Include="Windows_GameCoding\CameraComponent.cpp" />
     <ClCompile Include="Windows_GameCoding\Collider.cpp" />
     <ClCompile Include="Windows_GameCoding\Component.cpp" />
@@ -185,6 +188,7 @@
     <ClCompile Include="Windows_GameCoding\ResourceManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Scene.cpp" />
     <ClCompile Include="Windows_GameCoding\SceneManager.cpp" />
+    <ClCompile Include="Windows_GameCoding\SphereCollider.cpp" />
     <ClCompile Include="Windows_GameCoding\Sprite.cpp" />
     <ClCompile Include="Windows_GameCoding\SpriteActor.cpp" />
     <ClCompile Include="Windows_GameCoding\Texture.cpp" />
