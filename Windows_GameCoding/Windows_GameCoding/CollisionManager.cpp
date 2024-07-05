@@ -9,10 +9,26 @@ void CollisionManager::Init ( )
 
 void CollisionManager::Update ( )
 {
-	for ( Collider* collider : _colliders )
-	{
+	vector<Collider*>& colliders = _colliders;
 
+	for ( int32 i = 0; i < colliders.size ( ); i++ )
+	{
+		for ( int32 j = i + 1; j < colliders.size ( ); j++ )
+		{
+			Collider* src = colliders[ i ];
+			Collider* dest = colliders[ j ];
+
+			if ( src->CheckCollision ( dest ) )
+			{
+				// 충돌
+			}
+			else
+			{
+				// 충돌 아님
+			}
+		}
 	}
+
 }
 
 void CollisionManager::AddCollider ( Collider* collider )

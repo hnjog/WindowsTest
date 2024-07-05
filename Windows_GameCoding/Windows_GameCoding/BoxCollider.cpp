@@ -2,6 +2,7 @@
 #include"BoxCollider.h"
 #include"SceneManager.h"
 #include"Actor.h"
+#include"SphereCollider.h"
 
 BoxCollider::BoxCollider ( )
 	:Super ( ColliderType::Box )
@@ -25,7 +26,7 @@ void BoxCollider::TickComponent ( )
 
 void BoxCollider::Render ( HDC hdc )
 {
-	Super::Render (hdc );
+	Super::Render ( hdc );
 
 	if ( _showDebug == false )
 		return;
@@ -45,5 +46,26 @@ void BoxCollider::Render ( HDC hdc )
 
 bool BoxCollider::CheckCollision ( Collider* other )
 {
+	if ( other == nullptr )
+		return false;
+
+	switch ( other->GetColliderType ( ) )
+	{
+	case ColliderType::Box:
+	{
+		return CheckCollisionBox2Box ( this , static_cast< BoxCollider* >( other ) );
+	}
+	break;
+
+	case ColliderType::Sphere:
+	{
+		return CheckCollisionSphere2Box ( static_cast< SphereCollider* >( other ) , this );
+	}
+	break;
+
+	default:
+		break;
+	}
+
 	return false;
 }
