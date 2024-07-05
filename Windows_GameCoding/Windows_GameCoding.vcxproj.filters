@@ -155,6 +155,9 @@
     <ClInclude Include="Windows_GameCoding\SphereCollider.h">
       <Filter>소스 파일\05_Component\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="Windows_GameCoding\CollisionManager.h">
+      <Filter>소스 파일\01_Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Windows_GameCoding.rc">
@@ -244,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\SphereCollider.cpp">
       <Filter>소스 파일\05_Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\CollisionManager.cpp">
+      <Filter>소스 파일\01_Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

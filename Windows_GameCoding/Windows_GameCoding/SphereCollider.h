@@ -15,5 +15,10 @@ public:
 
 	virtual bool CheckCollision ( Collider* other );
 
+	float GetRadius ( ) { return _radius; }
+	void SetRadius ( float radius ) { _radius = radius; }
+
+private:
+	float _radius = 0.f;
 
 };

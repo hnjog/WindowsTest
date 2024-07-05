@@ -9,6 +9,9 @@
 #include"SpriteActor.h"
 #include"Player.h"
 #include"Flipbook.h"
+#include"BoxCollider.h"
+#include"SphereCollider.h"
+#include"CollisionManager.h"
 
 DevScene::DevScene ( )
 {
@@ -78,11 +81,6 @@ void DevScene::Init ( )
 	}
 
 	{
-		Player* player = new Player ( );
-		AddActor ( player );
-	}
-
-	{
 		Sprite* sprite = GET_SINGLE ( ResourceManager )->GetSprite ( L"Stage01" );
 
 		SpriteActor* background = new SpriteActor ( );
@@ -93,7 +91,28 @@ void DevScene::Init ( )
 		AddActor ( background );
 	}
 
+	{
+		Player* player = new Player ( );
+		{
+			SphereCollider* collider = new SphereCollider ( );
+			collider->SetRadius ( 100.0f );
+			player->AddComponent ( collider );
+			GET_SINGLE ( CollisionManager )->AddCollider ( collider );
+		}
+		AddActor ( player );
+	}
 
+	{
+		Actor* player = new Actor ( );
+		{
+			SphereCollider* collider = new SphereCollider ( );
+			collider->SetRadius ( 50.0f );
+			player->AddComponent ( collider );
+			GET_SINGLE ( CollisionManager )->AddCollider ( collider );
+		}
+		player->SetPos ( { 400,200 } );
+		AddActor ( player );
+	}
 
 	for ( const vector<Actor*>& actors : _actors )
 	{
@@ -109,6 +128,8 @@ void DevScene::Init ( )
 void DevScene::Update ( )
 {
 	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
+
+	GET_SINGLE ( CollisionManager )->Update ( );
 
 	for ( const vector<Actor*>& actors : _actors )
 	{

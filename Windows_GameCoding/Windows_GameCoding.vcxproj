@@ -140,6 +140,7 @@
     <ClInclude Include="Windows_GameCoding\BoxCollider.h" />
     <ClInclude Include="Windows_GameCoding\CameraComponent.h" />
     <ClInclude Include="Windows_GameCoding\Collider.h" />
+    <ClInclude Include="Windows_GameCoding\CollisionManager.h" />
     <ClInclude Include="Windows_GameCoding\Component.h" />
     <ClInclude Include="Windows_GameCoding\Defines.h" />
     <ClInclude Include="Windows_GameCoding\DevScene.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Windows_GameCoding\BoxCollider.cpp" />
     <ClCompile Include="Windows_GameCoding\CameraComponent.cpp" />
     <ClCompile Include="Windows_GameCoding\Collider.cpp" />
+    <ClCompile Include="Windows_GameCoding\CollisionManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Component.cpp" />
     <ClCompile Include="Windows_GameCoding\DevScene.cpp" />
     <ClCompile Include="Windows_GameCoding\EditScene.cpp" />

@@ -6,7 +6,7 @@ class BoxCollider : public Collider
 {
 	using Super = Collider;
 public:
-	BoxCollider (  );
+	BoxCollider ( );
 	virtual ~BoxCollider ( ) override;
 
 	virtual void BeginPlay ( ) override;
@@ -15,5 +15,10 @@ public:
 
 	virtual bool CheckCollision ( Collider* other );
 
+	Vec2 GetSize ( ) { return _size; }
+	void SetSize ( Vec2 size ) { _size = size; }
+
+private:
+	Vec2 _size = {};
 
 };
