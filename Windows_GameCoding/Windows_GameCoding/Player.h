@@ -3,6 +3,7 @@
 #include"FlipbookActor.h"
 
 class Flipbook;
+class Collider;
 
 class Player : public FlipbookActor
 {
@@ -15,6 +16,9 @@ public:
 	virtual void BeginPlay ( )override;
 	virtual void Tick ( )override;
 	virtual void Render ( HDC hdc )override;
+
+	virtual void OnComponentBeginOverlap ( Collider* collider , Collider* other ) override;
+	virtual void OnComponentEndOverlap ( Collider* collider , Collider* other ) override;
 
 protected:
 	Flipbook* _flipbookUp = nullptr;

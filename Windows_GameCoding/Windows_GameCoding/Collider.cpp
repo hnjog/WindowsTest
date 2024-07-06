@@ -12,6 +12,7 @@ Collider::Collider ( ColliderType colliderType )
 Collider::~Collider ( )
 {
 	Super::~Component ( );
+	_collisionMap.clear ( );
 }
 
 void Collider::BeginPlay ( )
@@ -38,9 +39,35 @@ bool Collider::CheckCollision ( Collider* other )
 
 bool Collider::CheckCollisionBox2Box ( BoxCollider* b1 , BoxCollider* b2 )
 {
-	// 두 box 타입간
+	Vec2 p1 = b1->GetOwner()->GetPos();
+	Vec2 s1 = b1->GetSize();
 
-	return false;
+	Vec2 p2 = b2->GetOwner()->GetPos();
+	Vec2 s2 = b2->GetSize();
+
+	float minX_1 = p1.x - s1.x / 2;
+	float maxX_1 = p1.x + s1.x / 2;
+	float minY_1 = p1.y - s1.y / 2;
+	float maxY_1 = p1.y + s1.y / 2;
+
+	float minX_2 = p2.x - s2.x / 2;
+	float maxX_2 = p2.x + s2.x / 2;
+	float minY_2 = p2.y - s2.y / 2;
+	float maxY_2 = p2.y + s2.y / 2;
+
+	if (maxX_2 < minX_1)
+		return false;
+
+	if (maxX_1 < minX_2)
+		return false;
+
+	if (maxY_1 < minY_2)
+		return false;
+
+	if (maxY_2 < minY_1)
+		return false;	
+
+	return true;
 }
 
 bool Collider::CheckCollisionSphere2Box ( SphereCollider* s1 , BoxCollider* b1 )

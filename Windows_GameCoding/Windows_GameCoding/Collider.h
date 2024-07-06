@@ -29,4 +29,9 @@ public:
 protected:
 	ColliderType _colliderType;
 	bool _showDebug = true;
+
+	// 부딪힌 녀석을 체크?
+public:
+	// 이거 서로 참조
+	unordered_set<Collider*> _collisionMap;
 };

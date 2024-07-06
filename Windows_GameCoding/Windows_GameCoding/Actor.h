@@ -1,6 +1,7 @@
 #pragma once
 
 class Component;
+class Collider;
 
 class Actor
 {
@@ -20,6 +21,10 @@ public:
 
 	void AddComponent ( Component* component );
 	void RemoveComponent ( Component* component );
+
+	// 충돌 이벤트
+	virtual void OnComponentBeginOverlap (Collider* collider, Collider* other );
+	virtual void OnComponentEndOverlap (Collider* collider, Collider* other );
 
 protected:
 	// 모든 actor가 '반드시' 화면에 그려져야 하진 않는다

@@ -20,11 +20,27 @@ void CollisionManager::Update ( )
 
 			if ( src->CheckCollision ( dest ) )
 			{
-				// 충돌
+				if ( src->_collisionMap.contains ( dest ) == false )
+				{
+					// 충돌
+					src->GetOwner ( )->OnComponentBeginOverlap ( src , dest );
+					dest->GetOwner ( )->OnComponentBeginOverlap ( dest , src );
+					src->_collisionMap.insert ( dest );
+					dest->_collisionMap.insert ( src );
+				}
+				
 			}
 			else
 			{
 				// 충돌 아님
+				if ( src->_collisionMap.contains ( dest ) )
+				{
+					// 충돌
+					src->GetOwner ( )->OnComponentEndOverlap ( src , dest );
+					dest->GetOwner ( )->OnComponentEndOverlap ( dest , src );
+					src->_collisionMap.erase(dest);
+					dest->_collisionMap.erase ( src );
+				}
 			}
 		}
 	}
