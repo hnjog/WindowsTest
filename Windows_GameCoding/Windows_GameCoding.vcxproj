@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="Windows_GameCoding\Actor.h" />
     <ClInclude Include="Windows_GameCoding\BoxCollider.h" />
+    <ClInclude Include="Windows_GameCoding\Button.h" />
     <ClInclude Include="Windows_GameCoding\CameraComponent.h" />
     <ClInclude Include="Windows_GameCoding\Collider.h" />
     <ClInclude Include="Windows_GameCoding\CollisionManager.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Windows_GameCoding\Texture.h" />
     <ClInclude Include="Windows_GameCoding\TimeManager.h" />
     <ClInclude Include="Windows_GameCoding\Types.h" />
+    <ClInclude Include="Windows_GameCoding\UI.h" />
     <ClInclude Include="Windows_GameCoding\Utils.h" />
     <ClInclude Include="Windows_GameCoding\Values.h" />
     <ClInclude Include="Windows_GameCoding\Windows_GameCoding.h" />
@@ -173,6 +175,7 @@
   <ItemGroup>
     <ClCompile Include="Windows_GameCoding\Actor.cpp" />
     <ClCompile Include="Windows_GameCoding\BoxCollider.cpp" />
+    <ClCompile Include="Windows_GameCoding\Button.cpp" />
     <ClCompile Include="Windows_GameCoding\CameraComponent.cpp" />
     <ClCompile Include="Windows_GameCoding\Collider.cpp" />
     <ClCompile Include="Windows_GameCoding\CollisionManager.cpp" />
@@ -195,6 +198,7 @@
     <ClCompile Include="Windows_GameCoding\SpriteActor.cpp" />
     <ClCompile Include="Windows_GameCoding\Texture.cpp" />
     <ClCompile Include="Windows_GameCoding\TimeManager.cpp" />
+    <ClCompile Include="Windows_GameCoding\UI.cpp" />
     <ClCompile Include="Windows_GameCoding\Utils.cpp" />
     <ClCompile Include="Windows_GameCoding\Windows_GameCoding.cpp" />
   </ItemGroup>

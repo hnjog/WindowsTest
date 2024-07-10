@@ -57,6 +57,9 @@
     <Filter Include="소스 파일\05_Component\Collision">
       <UniqueIdentifier>{94e50f4a-a1e7-428a-98c3-c0b3398577a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\06_UI">
+      <UniqueIdentifier>{ea3dece2-9455-4279-ac6d-341f64467cc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows_GameCoding\pch.h">
@@ -158,6 +161,12 @@
     <ClInclude Include="Windows_GameCoding\CollisionManager.h">
       <Filter>소스 파일\01_Managers</Filter>
     </ClInclude>
+    <ClInclude Include="Windows_GameCoding\UI.h">
+      <Filter>소스 파일\06_UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Button.h">
+      <Filter>소스 파일\06_UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Windows_GameCoding.rc">
@@ -250,6 +259,12 @@
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\CollisionManager.cpp">
       <Filter>소스 파일\01_Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\UI.cpp">
+      <Filter>소스 파일\06_UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Button.cpp">
+      <Filter>소스 파일\06_UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
