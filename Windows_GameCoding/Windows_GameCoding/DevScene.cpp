@@ -12,6 +12,8 @@
 #include"BoxCollider.h"
 #include"SphereCollider.h"
 #include"CollisionManager.h"
+#include"UI.h"
+#include"Button.h"
 
 DevScene::DevScene ( )
 {
@@ -19,7 +21,6 @@ DevScene::DevScene ( )
 
 DevScene::~DevScene ( )
 {
-
 	for ( vector<Actor*>& actors : _actors )
 	{
 		for ( Actor* actor : actors )
@@ -114,6 +115,12 @@ void DevScene::Init ( )
 		AddActor ( player );
 	}
 
+	{
+		UI* ui = new Button ( );
+		ui->BeginPlay ( );
+		_uis.push_back ( ui );
+	}
+
 	for ( const vector<Actor*>& actors : _actors )
 	{
 		for ( Actor* actor : actors )
@@ -121,8 +128,6 @@ void DevScene::Init ( )
 			actor->BeginPlay ( );
 		}
 	}
-
-
 }
 
 void DevScene::Update ( )
@@ -138,6 +143,11 @@ void DevScene::Update ( )
 			actor->Tick ( );
 		}
 	}
+
+	for ( UI* ui : _uis )
+	{
+		ui->Tick ( );
+	}
 }
 
 void DevScene::Render ( HDC hdc )
@@ -149,6 +159,11 @@ void DevScene::Render ( HDC hdc )
 		{
 			actor->Render ( hdc );
 		}
+	}
+
+	for ( UI* ui : _uis )
+	{
+		ui->Render ( hdc );
 	}
 }
 
