@@ -14,6 +14,7 @@
 #include<unordered_set>
 #include<string>
 #include<algorithm>
+#include<functional>
 
 using namespace std;
 

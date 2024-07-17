@@ -31,6 +31,11 @@ DevScene::~DevScene ( )
 
 		actors.clear ( );
 	}
+
+	for ( UI* ui : _uis )
+	{
+		SAFE_DELETE( ui);
+	}
 }
 
 void DevScene::Init ( )
@@ -116,8 +121,13 @@ void DevScene::Init ( )
 	}
 
 	{
-		UI* ui = new Button ( );
-		ui->BeginPlay ( );
+		Button* ui = new Button ( );
+
+		ui->SetSprite ( GET_SINGLE ( ResourceManager )->GetSprite ( L"Start_Off" ),BS_Default );
+		ui->SetSprite ( GET_SINGLE ( ResourceManager )->GetSprite ( L"Start_On" ),BS_Clicked );
+
+		ui->SetPos ( { 200,200 } );
+
 		_uis.push_back ( ui );
 	}
 
@@ -127,6 +137,11 @@ void DevScene::Init ( )
 		{
 			actor->BeginPlay ( );
 		}
+	}
+
+	for ( UI* ui : _uis )
+	{
+		ui->BeginPlay ( );
 	}
 }
 

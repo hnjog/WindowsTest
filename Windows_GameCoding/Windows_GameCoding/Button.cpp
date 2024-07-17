@@ -17,6 +17,8 @@ void Button::BeginPlay ( )
 	Super::BeginPlay ( );
 
 	SetButtonState ( BS_Default );
+
+	AddOnClickDelegate ( this , &Button::OnClickButton );
 }
 
 void Button::Tick ( )
@@ -24,13 +26,39 @@ void Button::Tick ( )
 	POINT mousePos = GET_SINGLE ( InputManager )->GetMousePos ( );
 	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
 
+	if ( _state == BS_Clicked )
+	{
+		_sumTime += delta;
+		if ( _sumTime >= 0.2f )
+		{
+			_sumTime = 0.f;
+			SetButtonState ( BS_Default );
+		}
+	}
+
 	if ( IsMouseInRect ( ) )
 	{
-		int a = 0;
+		if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::LeftMouse ) )
+		{
+			SetButtonState ( BS_Pressed );
+		}
+		else
+		{
+			if ( _state == BS_Pressed )
+			{
+				SetButtonState ( BS_Clicked );
+
+				if ( _onClick )
+				{
+					_onClick ( );
+				}
+			}
+
+		}
 	}
 	else
 	{
-
+		SetButtonState ( BS_Default );
 	}
 
 }

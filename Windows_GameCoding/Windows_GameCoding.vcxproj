@@ -164,6 +164,7 @@
     <ClInclude Include="Windows_GameCoding\Sprite.h" />
     <ClInclude Include="Windows_GameCoding\SpriteActor.h" />
     <ClInclude Include="Windows_GameCoding\targetver.h" />
+    <ClInclude Include="Windows_GameCoding\TestButton.h" />
     <ClInclude Include="Windows_GameCoding\Texture.h" />
     <ClInclude Include="Windows_GameCoding\TimeManager.h" />
     <ClInclude Include="Windows_GameCoding\Types.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="Windows_GameCoding\SphereCollider.cpp" />
     <ClCompile Include="Windows_GameCoding\Sprite.cpp" />
     <ClCompile Include="Windows_GameCoding\SpriteActor.cpp" />
+    <ClCompile Include="Windows_GameCoding\TestButton.cpp" />
     <ClCompile Include="Windows_GameCoding\Texture.cpp" />
     <ClCompile Include="Windows_GameCoding\TimeManager.cpp" />
     <ClCompile Include="Windows_GameCoding\UI.cpp" />

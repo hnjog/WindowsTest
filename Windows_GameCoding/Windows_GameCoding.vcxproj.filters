@@ -60,6 +60,9 @@
     <Filter Include="소스 파일\06_UI">
       <UniqueIdentifier>{ea3dece2-9455-4279-ac6d-341f64467cc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\06_UI\Game">
+      <UniqueIdentifier>{20b7f25c-391e-41a1-801c-4c1bddfce63b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows_GameCoding\pch.h">
@@ -167,6 +170,9 @@
     <ClInclude Include="Windows_GameCoding\Button.h">
       <Filter>소스 파일\06_UI</Filter>
     </ClInclude>
+    <ClInclude Include="Windows_GameCoding\TestButton.h">
+      <Filter>소스 파일\06_UI\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Windows_GameCoding.rc">
@@ -265,6 +271,9 @@
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\Button.cpp">
       <Filter>소스 파일\06_UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\TestButton.cpp">
+      <Filter>소스 파일\06_UI\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
