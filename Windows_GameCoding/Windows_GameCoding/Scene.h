@@ -1,16 +1,25 @@
 #pragma once
+
+class Actor;
+class UI;
+
 class Scene
 {
 public:
 	Scene();
 	virtual ~Scene();
 
-	// ¼ø¼ö °¡»ó ÇÔ¼ö
-	virtual void Init() abstract;
-	virtual void Update() abstract;
-	virtual void Render(HDC hdc) abstract;
+	// ìˆœìˆ˜ ê°€ìƒ í•¨ìˆ˜
+	virtual void Init();
+	virtual void Update();
+	virtual void Render(HDC hdc);
+
+public:
+	void AddActor ( Actor* actor );
+	void RemoveActor ( Actor* actor );
 
 protected:
-	//vector<class Object*>
+	vector<Actor*> _actors[ LAYER_MAXCOUNT ];
+	vector<UI*> _uis;
 };
 

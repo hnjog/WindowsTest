@@ -14,7 +14,6 @@
 #include"CollisionManager.h"
 #include"UI.h"
 #include"Button.h"
-#include"TestPanel.h"
 
 DevScene::DevScene ( )
 {
@@ -41,6 +40,8 @@ DevScene::~DevScene ( )
 
 void DevScene::Init ( )
 {
+	
+
 	GET_SINGLE ( ResourceManager )->LoadTexture ( L"Stage01" , L"Sprite\\Map\\Stage01.bmp" );
 	GET_SINGLE ( ResourceManager )->LoadTexture ( L"Tile" , L"Sprite\\Map\\Tile.bmp" , RGB ( 128 , 128 , 128 ) );
 	GET_SINGLE ( ResourceManager )->LoadTexture ( L"Sword" , L"Sprite\\Item\\Sword.bmp" );
@@ -121,78 +122,19 @@ void DevScene::Init ( )
 		AddActor ( player );
 	}
 
-	{
-		TestPanel* ui = new TestPanel ( );
-		_uis.push_back ( ui );
-	}
-
-	for ( const vector<Actor*>& actors : _actors )
-	{
-		for ( Actor* actor : actors )
-		{
-			actor->BeginPlay ( );
-		}
-	}
-
-	for ( UI* ui : _uis )
-	{
-		ui->BeginPlay ( );
-	}
+	Super::Init ( );
 }
 
 void DevScene::Update ( )
 {
+	Super::Update ( );
+
 	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
-
-	GET_SINGLE ( CollisionManager )->Update ( );
-
-	for ( const vector<Actor*>& actors : _actors )
-	{
-		for ( Actor* actor : actors )
-		{
-			actor->Tick ( );
-		}
-	}
-
-	for ( UI* ui : _uis )
-	{
-		ui->Tick ( );
-	}
+	
 }
 
 void DevScene::Render ( HDC hdc )
 {
+	Super::Render ( hdc );
 
-	for ( const vector<Actor*>& actors : _actors )
-	{
-		for ( Actor* actor : actors )
-		{
-			actor->Render ( hdc );
-		}
-	}
-
-	for ( UI* ui : _uis )
-	{
-		ui->Render ( hdc );
-	}
-}
-
-void DevScene::AddActor ( Actor* actor )
-{
-	if ( actor == nullptr )
-		return;
-
-	_actors[ actor->GetLayer ( ) ].push_back ( actor );
-}
-
-void DevScene::RemoveActor ( Actor* actor )
-{
-	if ( actor == nullptr )
-		return;
-
-	vector<Actor*>& v = _actors[ actor->GetLayer ( ) ];
-
-	// std::remove는 삭제할 위치를 찾아주는 것임을 잊지말자
-	auto findIt = std::remove ( v.begin ( ) , v.end ( ) , actor );
-	v.erase ( findIt,v.end() );
 }
