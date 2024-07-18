@@ -173,6 +173,12 @@
     <ClInclude Include="Windows_GameCoding\TestButton.h">
       <Filter>소스 파일\06_UI\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Panel.h">
+      <Filter>소스 파일\06_UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\TestPanel.h">
+      <Filter>소스 파일\06_UI\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Windows_GameCoding.rc">
@@ -273,6 +279,12 @@
       <Filter>소스 파일\06_UI</Filter>
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\TestButton.cpp">
+      <Filter>소스 파일\06_UI\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Panel.cpp">
+      <Filter>소스 파일\06_UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\TestPanel.cpp">
       <Filter>소스 파일\06_UI\Game</Filter>
     </ClCompile>
   </ItemGroup>
