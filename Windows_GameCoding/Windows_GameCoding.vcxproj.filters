@@ -63,6 +63,9 @@
     <Filter Include="소스 파일\06_UI\Game">
       <UniqueIdentifier>{20b7f25c-391e-41a1-801c-4c1bddfce63b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04_Resources\Paper2D">
+      <UniqueIdentifier>{8db28f5a-2c21-4f61-b03c-2c401936ae72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows_GameCoding\pch.h">
@@ -125,12 +128,6 @@
     <ClInclude Include="Windows_GameCoding\Windows_GameCoding.h">
       <Filter>소스 파일\00_MainGame</Filter>
     </ClInclude>
-    <ClInclude Include="Windows_GameCoding\Texture.h">
-      <Filter>소스 파일\04_Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows_GameCoding\Sprite.h">
-      <Filter>소스 파일\04_Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Windows_GameCoding\Player.h">
       <Filter>소스 파일\03_Objects\Game</Filter>
     </ClInclude>
@@ -142,9 +139,6 @@
     </ClInclude>
     <ClInclude Include="Windows_GameCoding\Component.h">
       <Filter>소스 파일\05_Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows_GameCoding\Flipbook.h">
-      <Filter>소스 파일\04_Resources</Filter>
     </ClInclude>
     <ClInclude Include="Windows_GameCoding\FlipbookActor.h">
       <Filter>소스 파일\03_Objects\Unreal</Filter>
@@ -172,6 +166,21 @@
     </ClInclude>
     <ClInclude Include="Windows_GameCoding\Panel.h">
       <Filter>소스 파일\06_UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Flipbook.h">
+      <Filter>소스 파일\04_Resources\Paper2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Sprite.h">
+      <Filter>소스 파일\04_Resources\Paper2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Texture.h">
+      <Filter>소스 파일\04_Resources\Paper2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Tilemap.h">
+      <Filter>소스 파일\04_Resources\Paper2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\TilemapActor.h">
+      <Filter>소스 파일\03_Objects\Unreal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -227,12 +236,6 @@
     <ClCompile Include="Windows_GameCoding\Windows_GameCoding.cpp">
       <Filter>소스 파일\00_MainGame</Filter>
     </ClCompile>
-    <ClCompile Include="Windows_GameCoding\Texture.cpp">
-      <Filter>소스 파일\04_Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Windows_GameCoding\Sprite.cpp">
-      <Filter>소스 파일\04_Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Windows_GameCoding\Player.cpp">
       <Filter>소스 파일\03_Objects\Game</Filter>
     </ClCompile>
@@ -244,9 +247,6 @@
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\Component.cpp">
       <Filter>소스 파일\05_Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Windows_GameCoding\Flipbook.cpp">
-      <Filter>소스 파일\04_Resources</Filter>
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\FlipbookActor.cpp">
       <Filter>소스 파일\03_Objects\Unreal</Filter>
@@ -274,6 +274,21 @@
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\Panel.cpp">
       <Filter>소스 파일\06_UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Flipbook.cpp">
+      <Filter>소스 파일\04_Resources\Paper2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Sprite.cpp">
+      <Filter>소스 파일\04_Resources\Paper2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Texture.cpp">
+      <Filter>소스 파일\04_Resources\Paper2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Tilemap.cpp">
+      <Filter>소스 파일\04_Resources\Paper2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\TilemapActor.cpp">
+      <Filter>소스 파일\03_Objects\Unreal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

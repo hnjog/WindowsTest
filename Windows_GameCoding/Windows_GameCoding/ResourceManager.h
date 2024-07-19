@@ -4,6 +4,7 @@ class ResourceBase;
 class Texture;
 class Sprite;
 class Flipbook;
+class Tilemap;
 
 class ResourceManager
 {
@@ -27,6 +28,13 @@ public:
 	Flipbook* GetFlipbook ( const wstring& key ) { return _flipbooks[ key ]; }
 	Flipbook* CreateFlipbook ( const wstring& key);
 
+	Tilemap* GetTileMap ( const wstring& key ) { return _tileMaps[ key ]; }
+	Tilemap* CreateTileMap ( const wstring& key );
+
+	void SaveTileMap ( const wstring& key, const wstring& path );
+	Tilemap* LoadTileMap ( const wstring& key, const wstring& path );
+
+
 private:
 	// c++ 20 기준으로 제공하는 파일 입출력 방식
 	HWND _hwnd;
@@ -35,5 +43,6 @@ private:
 	unordered_map<wstring , Texture*> _textures;
 	unordered_map<wstring , Sprite*> _sprites;
 	unordered_map<wstring , Flipbook*> _flipbooks;
+	unordered_map<wstring , Tilemap*> _tileMaps;
 };
 

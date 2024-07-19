@@ -166,6 +166,8 @@
     <ClInclude Include="Windows_GameCoding\SpriteActor.h" />
     <ClInclude Include="Windows_GameCoding\targetver.h" />
     <ClInclude Include="Windows_GameCoding\Texture.h" />
+    <ClInclude Include="Windows_GameCoding\Tilemap.h" />
+    <ClInclude Include="Windows_GameCoding\TilemapActor.h" />
     <ClInclude Include="Windows_GameCoding\TimeManager.h" />
     <ClInclude Include="Windows_GameCoding\Types.h" />
     <ClInclude Include="Windows_GameCoding\UI.h" />
@@ -199,6 +201,8 @@
     <ClCompile Include="Windows_GameCoding\Sprite.cpp" />
     <ClCompile Include="Windows_GameCoding\SpriteActor.cpp" />
     <ClCompile Include="Windows_GameCoding\Texture.cpp" />
+    <ClCompile Include="Windows_GameCoding\Tilemap.cpp" />
+    <ClCompile Include="Windows_GameCoding\TilemapActor.cpp" />
     <ClCompile Include="Windows_GameCoding\TimeManager.cpp" />
     <ClCompile Include="Windows_GameCoding\UI.cpp" />
     <ClCompile Include="Windows_GameCoding\Utils.cpp" />
