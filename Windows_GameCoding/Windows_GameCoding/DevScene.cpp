@@ -13,7 +13,8 @@
 #include"SphereCollider.h"
 #include"CollisionManager.h"
 #include"UI.h"
-#include"Button.h"
+#include"Tilemap.h"
+#include"TilemapActor.h"
 
 DevScene::DevScene ( )
 {
@@ -40,8 +41,6 @@ DevScene::~DevScene ( )
 
 void DevScene::Init ( )
 {
-	
-
 	GET_SINGLE ( ResourceManager )->LoadTexture ( L"Stage01" , L"Sprite\\Map\\Stage01.bmp" );
 	GET_SINGLE ( ResourceManager )->LoadTexture ( L"Tile" , L"Sprite\\Map\\Tile.bmp" , RGB ( 128 , 128 , 128 ) );
 	GET_SINGLE ( ResourceManager )->LoadTexture ( L"Sword" , L"Sprite\\Item\\Sword.bmp" );
@@ -101,25 +100,43 @@ void DevScene::Init ( )
 
 	{
 		Player* player = new Player ( );
+		player->SetPos ( { 100,100 } );
 		{
-			SphereCollider* collider = new SphereCollider ( );
-			collider->SetRadius ( 100.0f );
+			/*BoxCollider* collider = new BoxCollider ( );
+			collider->SetSize ( {100,100} );
 			player->AddComponent ( collider );
-			GET_SINGLE ( CollisionManager )->AddCollider ( collider );
+			GET_SINGLE ( CollisionManager )->AddCollider ( collider );*/
+
 		}
 		AddActor ( player );
 	}
 
+	//{
+	//	Actor* test = new Actor ( );
+	//	{
+	//		BoxCollider* collider = new BoxCollider ( );
+	//		collider->SetSize ( {100,100} );
+	//		test->AddComponent ( collider );
+	//		GET_SINGLE ( CollisionManager )->AddCollider ( collider );
+	//	}
+	//	test->SetLayer ( LAYER_OBJECT );
+	//	test->SetPos ( { 400,200 } );
+	//	AddActor ( test );
+	//}
+
 	{
-		Actor* player = new Actor ( );
+		TilemapActor* actor = new TilemapActor ( );
+		AddActor ( actor );
+
+		_tilemapActor = actor;
 		{
-			SphereCollider* collider = new SphereCollider ( );
-			collider->SetRadius ( 50.0f );
-			player->AddComponent ( collider );
-			GET_SINGLE ( CollisionManager )->AddCollider ( collider );
+			auto* tm = GET_SINGLE ( ResourceManager )->CreateTileMap ( L"Tilemap_01" );
+			tm->SetMapSize ( { 63,43 } );
+			tm->SetTileSize ( 48 );
+
+			_tilemapActor->SetTilemap ( tm );
+			_tilemapActor->SetShowDebug (true );
 		}
-		player->SetPos ( { 400,200 } );
-		AddActor ( player );
 	}
 
 	Super::Init ( );

@@ -16,5 +16,6 @@ public:
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
 	
+	class TilemapActor* _tilemapActor = nullptr;
 };
 
