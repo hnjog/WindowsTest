@@ -11,10 +11,20 @@ Tilemap::~Tilemap ( )
 
 void Tilemap::LoadFile ( const wstring& path )
 {
+
 }
 
 void Tilemap::SaveFile ( const wstring& path )
 {
+	// C 방식
+	{
+		FILE* file = nullptr;
+		::_wfopen_s ( &file , path.c_str ( ) , L"wb" );
+		assert ( file != nullptr );
+
+		::fwrite ( &_mapSize.x , sizeof( _mapSize.x ) , 1 , file );
+		::fwrite ( &_mapSize.y , sizeof( _mapSize.y ) , 1 , file );
+	}
 }
 
 Tile* Tilemap::GetTileAt ( Vec2Int pos )
