@@ -1,5 +1,7 @@
 #include"pch.h"
 #include"Tilemap.h"
+#include<fstream>
+#include<iostream>
 
 Tilemap::Tilemap ( )
 {
@@ -11,12 +13,60 @@ Tilemap::~Tilemap ( )
 
 void Tilemap::LoadFile ( const wstring& path )
 {
+	// C 방식
+	if ( false )
+	{
+		FILE* file = nullptr;
+		::_wfopen_s ( &file , path.c_str ( ) , L"rb" );
+		assert ( file != nullptr );
 
+		::fread ( &_mapSize.x , sizeof ( _mapSize.x ) , 1 , file );
+		::fread ( &_mapSize.y , sizeof ( _mapSize.y ) , 1 , file );
+
+		SetMapSize ( _mapSize );
+
+		for ( int32 y = 0; y < _mapSize.y; y++ )
+		{
+			for ( int32 x = 0; x < _mapSize.x; x++ )
+			{
+				int32 value = 0;
+				::fread ( &value , sizeof ( value ) , 1 , file );
+				_tiles[ y ][ x ].value = value;
+			}
+		}
+
+		::fclose ( file );
+	}
+
+	// C++
+	{
+		wifstream ifs;
+
+		ifs.open ( path );
+
+		ifs >> _mapSize.x;
+		ifs >> _mapSize.y;
+
+		SetMapSize ( _mapSize );
+
+		for ( int32 y = 0; y < _mapSize.y; y++ )
+		{
+			wstring line;
+			ifs >> line;
+			for ( int32 x = 0; x < _mapSize.x; x++ )
+			{
+				_tiles[ y ][ x ].value = line[ x ] == '1' ? 1 : 0;
+			}
+		}
+
+		ifs.close ( );
+	}
 }
 
 void Tilemap::SaveFile ( const wstring& path )
 {
 	// C 방식
+	if(false )
 	{
 		FILE* file = nullptr;
 		::_wfopen_s ( &file , path.c_str ( ) , L"wb" );
@@ -24,6 +74,38 @@ void Tilemap::SaveFile ( const wstring& path )
 
 		::fwrite ( &_mapSize.x , sizeof( _mapSize.x ) , 1 , file );
 		::fwrite ( &_mapSize.y , sizeof( _mapSize.y ) , 1 , file );
+
+		for ( int32 y = 0; y < _mapSize.y; y++ )
+		{
+			for ( int32 x = 0; x < _mapSize.x; x++ )
+			{
+				int32 value = _tiles[ y ][ x ].value;
+				::fwrite ( &value , sizeof ( value ) , 1 , file );
+			}
+		}
+
+		::fclose ( file );
+	}
+
+	// C++
+	{
+		wofstream ofs;
+
+		ofs.open ( path );
+
+		ofs << _mapSize.x << endl;
+		ofs << _mapSize.y << endl;
+
+		for ( int32 y = 0; y < _mapSize.y; y++ )
+		{
+			for ( int32 x = 0; x < _mapSize.x; x++ )
+			{
+				ofs << _tiles[ y ][ x ].value;
+			}
+			ofs << endl;
+		}
+
+		ofs.close ( );
 	}
 }
 

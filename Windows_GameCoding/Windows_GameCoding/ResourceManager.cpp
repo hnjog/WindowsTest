@@ -104,10 +104,25 @@ Tilemap* ResourceManager::CreateTileMap ( const wstring& key )
 
 void ResourceManager::SaveTileMap ( const wstring& key , const wstring& path )
 {
+	Tilemap* tm = GetTileMap ( key );
+
+	fs::path fullPath = _resourcePath / path;
+	tm->SaveFile ( fullPath );
+
 }
 
 Tilemap* ResourceManager::LoadTileMap ( const wstring& key , const wstring& path )
 {
-	return nullptr;
+	Tilemap* tm = nullptr;
+
+	if ( _tileMaps.find ( key ) == _tileMaps.end ( ) )
+		_tileMaps[ key ] = new Tilemap ( );
+
+	tm = _tileMaps[ key ];
+
+	fs::path fullPath = _resourcePath / path;
+	tm->LoadFile ( fullPath );
+
+	return tm;
 }
 
