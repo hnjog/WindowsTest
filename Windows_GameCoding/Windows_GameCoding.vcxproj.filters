@@ -182,6 +182,12 @@
     <ClInclude Include="Windows_GameCoding\TilemapActor.h">
       <Filter>소스 파일\03_Objects\Unreal</Filter>
     </ClInclude>
+    <ClInclude Include="Windows_GameCoding\SoundManager.h">
+      <Filter>소스 파일\01_Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows_GameCoding\Sound.h">
+      <Filter>소스 파일\04_Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Windows_GameCoding.rc">
@@ -289,6 +295,12 @@
     </ClCompile>
     <ClCompile Include="Windows_GameCoding\TilemapActor.cpp">
       <Filter>소스 파일\03_Objects\Unreal</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\SoundManager.cpp">
+      <Filter>소스 파일\01_Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows_GameCoding\Sound.cpp">
+      <Filter>소스 파일\04_Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

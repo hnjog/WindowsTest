@@ -161,6 +161,8 @@
     <ClInclude Include="Windows_GameCoding\ResourceManager.h" />
     <ClInclude Include="Windows_GameCoding\Scene.h" />
     <ClInclude Include="Windows_GameCoding\SceneManager.h" />
+    <ClInclude Include="Windows_GameCoding\Sound.h" />
+    <ClInclude Include="Windows_GameCoding\SoundManager.h" />
     <ClInclude Include="Windows_GameCoding\SphereCollider.h" />
     <ClInclude Include="Windows_GameCoding\Sprite.h" />
     <ClInclude Include="Windows_GameCoding\SpriteActor.h" />
@@ -197,6 +199,8 @@
     <ClCompile Include="Windows_GameCoding\ResourceManager.cpp" />
     <ClCompile Include="Windows_GameCoding\Scene.cpp" />
     <ClCompile Include="Windows_GameCoding\SceneManager.cpp" />
+    <ClCompile Include="Windows_GameCoding\Sound.cpp" />
+    <ClCompile Include="Windows_GameCoding\SoundManager.cpp" />
     <ClCompile Include="Windows_GameCoding\SphereCollider.cpp" />
     <ClCompile Include="Windows_GameCoding\Sprite.cpp" />
     <ClCompile Include="Windows_GameCoding\SpriteActor.cpp" />

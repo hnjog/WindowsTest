@@ -5,6 +5,7 @@ class Texture;
 class Sprite;
 class Flipbook;
 class Tilemap;
+class Sound;
 
 class ResourceManager
 {
@@ -34,6 +35,8 @@ public:
 	void SaveTileMap ( const wstring& key, const wstring& path );
 	Tilemap* LoadTileMap ( const wstring& key, const wstring& path );
 
+	Sound* GetSound ( const wstring& key ) { return _sounds[ key ]; }
+	Sound* LoadSound ( const wstring& key , const wstring& path );
 
 private:
 	// c++ 20 기준으로 제공하는 파일 입출력 방식
@@ -44,5 +47,6 @@ private:
 	unordered_map<wstring , Sprite*> _sprites;
 	unordered_map<wstring , Flipbook*> _flipbooks;
 	unordered_map<wstring , Tilemap*> _tileMaps;
+	unordered_map<wstring , Sound*> _sounds;
 };
 
