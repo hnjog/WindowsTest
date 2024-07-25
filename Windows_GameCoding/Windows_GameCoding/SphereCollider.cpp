@@ -11,7 +11,7 @@ SphereCollider::SphereCollider ( )
 
 SphereCollider::~SphereCollider ( )
 {
-	Super::~Collider ( );
+	
 }
 
 void SphereCollider::BeginPlay ( )

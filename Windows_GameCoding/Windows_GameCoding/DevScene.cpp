@@ -104,41 +104,41 @@ void DevScene::Init ( )
 		Player* player = new Player ( );
 		player->SetPos ( { 100,100 } );
 		{
-			/*BoxCollider* collider = new BoxCollider ( );
+			BoxCollider* collider = new BoxCollider ( );
 			collider->SetSize ( {100,100} );
 			player->AddComponent ( collider );
-			GET_SINGLE ( CollisionManager )->AddCollider ( collider );*/
+			GET_SINGLE ( CollisionManager )->AddCollider ( collider );
 
 		}
 		AddActor ( player );
 	}
 
-	//{
-	//	Actor* test = new Actor ( );
-	//	{
-	//		BoxCollider* collider = new BoxCollider ( );
-	//		collider->SetSize ( {100,100} );
-	//		test->AddComponent ( collider );
-	//		GET_SINGLE ( CollisionManager )->AddCollider ( collider );
-	//	}
-	//	test->SetLayer ( LAYER_OBJECT );
-	//	test->SetPos ( { 400,200 } );
-	//	AddActor ( test );
-	//}
+	{
+		Actor* test = new Actor ( );
+		{
+			BoxCollider* collider = new BoxCollider ( );
+			collider->SetSize ( {100,100} );
+			test->AddComponent ( collider );
+			GET_SINGLE ( CollisionManager )->AddCollider ( collider );
+		}
+		test->SetLayer ( LAYER_OBJECT );
+		test->SetPos ( { 300,200 } );
+		AddActor ( test );
+	}
 
 	{
-		TilemapActor* actor = new TilemapActor ( );
-		AddActor ( actor );
+		//TilemapActor* actor = new TilemapActor ( );
+		//AddActor ( actor );
 
-		_tilemapActor = actor;
-		{
-			auto* tm = GET_SINGLE ( ResourceManager )->CreateTileMap ( L"Tilemap_01" );
-			tm->SetMapSize ( { 63,43 } );
-			tm->SetTileSize ( 48 );
+		//_tilemapActor = actor;
+		//{
+		//	auto* tm = GET_SINGLE ( ResourceManager )->CreateTileMap ( L"Tilemap_01" );
+		//	tm->SetMapSize ( { 63,43 } );
+		//	tm->SetTileSize ( 48 );
 
-			_tilemapActor->SetTilemap ( tm );
-			_tilemapActor->SetShowDebug (true );
-		}
+		//	_tilemapActor->SetTilemap ( tm );
+		//	_tilemapActor->SetShowDebug (true );
+		//}
 	}
 
 	GET_SINGLE ( ResourceManager )->LoadSound ( L"BGM" , L"Sound\\BGM.wav" );

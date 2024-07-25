@@ -6,6 +6,7 @@
 #include"TimeManager.h"
 #include"CameraComponent.h"
 #include"Collider.h"
+#include"BoxCollider.h"
 
 Player::Player ( )
 {
@@ -65,10 +66,63 @@ void Player::Render ( HDC hdc )
 
 void Player::OnComponentBeginOverlap ( Collider* collider , Collider* other )
 {
-	Super::OnComponentBeginOverlap (collider,other );
+	Super::OnComponentBeginOverlap ( collider , other );
+
+	BoxCollider* b1 = dynamic_cast< BoxCollider* >( collider );
+	BoxCollider* b2 = dynamic_cast< BoxCollider* >( other );
+	if ( b1 == nullptr || b2 == nullptr )
+		return;
+
+	AdjustCollisionPos ( b1 , b2 );
+
 }
 
 void Player::OnComponentEndOverlap ( Collider* collider , Collider* other )
 {
-	Super::OnComponentEndOverlap (collider,other );
+	Super::OnComponentEndOverlap ( collider , other );
+}
+
+void Player::TickGravity ( )
+{
+}
+
+void Player::AdjustCollisionPos ( BoxCollider* b1 , BoxCollider* b2 )
+{
+	RECT r1 = b1->GetRect ( );
+	RECT r2 = b2->GetRect ( );
+
+	Vec2 pos = GetPos ( );
+
+	RECT intersect = {};
+	if ( ::IntersectRect ( &intersect , &r1 , &r2 ) )
+	{
+		int32 w = intersect.right - intersect.left;
+		int32 h = intersect.bottom - intersect.top;
+		const int disValue = 5;
+		if ( w > h )
+		{
+			if ( intersect.top == r2.top )
+			{
+				pos.y -= h * disValue;
+			}
+			else
+			{
+				pos.y += h * disValue;
+			}
+		}
+		else
+		{
+			if ( intersect.left == r2.left )
+			{
+				pos.x -= w * disValue;
+			}
+			else
+			{
+				pos.x += w * disValue;
+			}
+		}
+
+	}
+
+	SetPos ( pos );
 }
