@@ -127,6 +127,24 @@ void DevScene::Init ( )
 	}
 
 	{
+		Actor* test = new Actor ( );
+		{
+			BoxCollider* collider = new BoxCollider ( );
+			collider->SetSize ( { 10000,100 } );
+
+			uint32 flag = CLT_OBJECT;
+			flag |= (1 << CLT_GROUND);
+
+			collider->SetCollisionFlag ( flag );
+			test->AddComponent ( collider );
+			GET_SINGLE ( CollisionManager )->AddCollider ( collider );
+		}
+		test->SetLayer ( LAYER_OBJECT );
+		test->SetPos ( { 200,400 } );
+		AddActor ( test );
+	}
+
+	{
 		//TilemapActor* actor = new TilemapActor ( );
 		//AddActor ( actor );
 
