@@ -49,6 +49,9 @@ bool BoxCollider::CheckCollision ( Collider* other )
 	if ( other == nullptr )
 		return false;
 
+	if ( Super::CheckCollision ( other ) == false )
+		return false;
+
 	switch ( other->GetColliderType ( ) )
 	{
 	case ColliderType::Box:

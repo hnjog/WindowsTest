@@ -32,6 +32,9 @@ void Collider::Render ( HDC hdc )
 
 bool Collider::CheckCollision ( Collider* other )
 {
+	uint32 layer = other->GetCollisionLayer ( );
+	if ( _collisionFlag & ( 1 << layer ) )
+		return true;
 
 	return false;
 }
@@ -62,4 +65,14 @@ bool Collider::CheckCollisionSphere2Sphere ( SphereCollider* s1 , SphereCollider
 	float dist = dir.Length ( );
 
 	return dist <= r1 + r2;
+}
+
+void Collider::AddCollisionFlagLayer ( COLLISION_LAYER_TYPE layer )
+{
+	_collisionFlag |= ( 1 << layer );
+}
+
+void Collider::RemoveCollisionFlagLayer ( COLLISION_LAYER_TYPE layer )
+{
+	_collisionFlag &= ~( 1 << layer );
 }

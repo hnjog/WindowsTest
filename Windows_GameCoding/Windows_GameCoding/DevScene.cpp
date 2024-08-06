@@ -37,7 +37,7 @@ DevScene::~DevScene ( )
 
 	for ( UI* ui : _uis )
 	{
-		SAFE_DELETE( ui);
+		SAFE_DELETE ( ui );
 	}
 }
 
@@ -105,7 +105,12 @@ void DevScene::Init ( )
 		player->SetPos ( { 100,100 } );
 		{
 			BoxCollider* collider = new BoxCollider ( );
-			collider->SetSize ( {100,100} );
+			collider->SetSize ( { 100,100 } );
+			collider->SetCollisionLayer ( CLT_OBJECT );
+			collider->ResetCollisionFlag ( );
+
+			collider->AddCollisionFlagLayer( CLT_GROUND );
+
 			player->AddComponent ( collider );
 			GET_SINGLE ( CollisionManager )->AddCollider ( collider );
 
@@ -117,7 +122,8 @@ void DevScene::Init ( )
 		Actor* test = new Actor ( );
 		{
 			BoxCollider* collider = new BoxCollider ( );
-			collider->SetSize ( {100,100} );
+			collider->SetSize ( { 100,100 } );
+			collider->SetCollisionLayer ( CLT_OBJECT );
 			test->AddComponent ( collider );
 			GET_SINGLE ( CollisionManager )->AddCollider ( collider );
 		}
@@ -132,10 +138,7 @@ void DevScene::Init ( )
 			BoxCollider* collider = new BoxCollider ( );
 			collider->SetSize ( { 10000,100 } );
 
-			uint32 flag = CLT_OBJECT;
-			flag |= (1 << CLT_GROUND);
-
-			collider->SetCollisionFlag ( flag );
+			collider->SetCollisionLayer ( CLT_GROUND );
 			test->AddComponent ( collider );
 			GET_SINGLE ( CollisionManager )->AddCollider ( collider );
 		}
@@ -175,7 +178,7 @@ void DevScene::Update ( )
 	Super::Update ( );
 
 	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
-	
+
 	if ( GET_SINGLE ( InputManager )->GetButtonDown ( KeyType::Q ) )
 	{
 		GET_SINGLE ( ResourceManager )->SaveTileMap ( L"Tilemap_01" , L"Tilemap\\Tilemap01.txt" );

@@ -37,17 +37,7 @@ void Player::Tick ( )
 	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
 	const float speed = 200.f;
 
-	if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::W ) )
-	{
-		_pos.y -= speed * delta;
-		SetFlipbook ( _flipbookUp );
-	}
-	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::S ) )
-	{
-		_pos.y += speed * delta;
-		SetFlipbook ( _flipbookDown );
-	}
-	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::A ) )
+	if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::A ) )
 	{
 		_pos.x -= speed * delta;
 		SetFlipbook ( _flipbookLeft );
@@ -57,6 +47,12 @@ void Player::Tick ( )
 		_pos.x += speed * delta;
 		SetFlipbook ( _flipbookRight );
 	}
+	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::SpaceBar ) )
+	{
+		Jump ( );
+	}
+
+	TickGravity ( );
 }
 
 void Player::Render ( HDC hdc )
@@ -75,15 +71,47 @@ void Player::OnComponentBeginOverlap ( Collider* collider , Collider* other )
 
 	AdjustCollisionPos ( b1 , b2 );
 
+	_onGround = true;
+	_jumping = false;
 }
 
 void Player::OnComponentEndOverlap ( Collider* collider , Collider* other )
 {
 	Super::OnComponentEndOverlap ( collider , other );
+
+	BoxCollider* b1 = dynamic_cast< BoxCollider* >( collider );
+	BoxCollider* b2 = dynamic_cast< BoxCollider* >( other );
+	if ( b1 == nullptr || b2 == nullptr )
+		return;
+
+	if ( b2->GetCollisionLayer ( ) == CLT_GROUND )
+	{
+		_onGround = false;
+	}
+}
+
+void Player::Jump ( )
+{
+	if ( _jumping )
+		return;
+
+	_jumping = true;
+	_onGround = false;
+	_speed.y = -500;
 }
 
 void Player::TickGravity ( )
 {
+	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
+
+	if ( delta > 0.1f )
+		return;
+
+	if ( _onGround == true )
+		return;
+
+	_speed.y += _gravity * delta;
+	_pos.y += _speed.y * delta;
 }
 
 void Player::AdjustCollisionPos ( BoxCollider* b1 , BoxCollider* b2 )
