@@ -34,23 +34,23 @@ void Player::Tick ( )
 {
 	Super::Tick ( );
 
-	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
-	const float speed = 200.f;
+	
+	TickInput ( );
 
-	if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::A ) )
+	switch ( _state )
 	{
-		_pos.x -= speed * delta;
-		SetFlipbook ( _flipbookLeft );
-	}
-	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::D ) )
+	case PlayerState::MoveGround:
 	{
-		_pos.x += speed * delta;
-		SetFlipbook ( _flipbookRight );
+		TickMoveGround ( );
 	}
-	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::SpaceBar ) )
+	break;
+	case PlayerState::JumpFall:
 	{
-		Jump ( );
+		TickJumpFall ( );
 	}
+	break;
+	}
+
 
 	TickGravity ( );
 }
@@ -71,8 +71,10 @@ void Player::OnComponentBeginOverlap ( Collider* collider , Collider* other )
 
 	AdjustCollisionPos ( b1 , b2 );
 
-	_onGround = true;
-	_jumping = false;
+	if ( b2->GetCollisionLayer ( ) == CLT_GROUND )
+	{
+		SetState ( PlayerState::MoveGround );
+	}
 }
 
 void Player::OnComponentEndOverlap ( Collider* collider , Collider* other )
@@ -84,19 +86,64 @@ void Player::OnComponentEndOverlap ( Collider* collider , Collider* other )
 	if ( b1 == nullptr || b2 == nullptr )
 		return;
 
-	if ( b2->GetCollisionLayer ( ) == CLT_GROUND )
+}
+
+void Player::SetState ( PlayerState state )
+{
+	if ( _state == state )
+		return;
+
+	switch ( state )
 	{
-		_onGround = false;
+	case PlayerState::MoveGround:
+		_speed.y = 0;
+		break;
+	case PlayerState::JumpFall:
+		break;
+	default:
+		break;
 	}
+
+	_state = state;
+}
+
+void Player::TickInput ( )
+{
+	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
+	const float speed = 200.f;
+
+	if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::A ) )
+	{
+		_pos.x -= speed * delta;
+		SetFlipbook ( _flipbookLeft );
+	}
+	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::D ) )
+	{
+		_pos.x += speed * delta;
+		SetFlipbook ( _flipbookRight );
+	}
+}
+
+void Player::TickMoveGround ( )
+{
+	if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::SpaceBar ) )
+	{
+		Jump ( );
+	}
+
+	
+}
+
+void Player::TickJumpFall ( )
+{
 }
 
 void Player::Jump ( )
 {
-	if ( _jumping )
+	if ( _state == PlayerState::JumpFall )
 		return;
 
-	_jumping = true;
-	_onGround = false;
+	SetState( PlayerState::JumpFall);
 	_speed.y = -500;
 }
 
@@ -107,7 +154,7 @@ void Player::TickGravity ( )
 	if ( delta > 0.1f )
 		return;
 
-	if ( _onGround == true )
+	if ( _state == PlayerState::MoveGround )
 		return;
 
 	_speed.y += _gravity * delta;

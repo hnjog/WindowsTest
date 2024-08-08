@@ -6,6 +6,12 @@ class Flipbook;
 class Collider;
 class BoxCollider;
 
+enum class PlayerState
+{
+	MoveGround,
+	JumpFall,
+};
+
 class Player : public FlipbookActor
 {
 	using Super = FlipbookActor;
@@ -20,6 +26,13 @@ public:
 
 	virtual void OnComponentBeginOverlap ( Collider* collider , Collider* other ) override;
 	virtual void OnComponentEndOverlap ( Collider* collider , Collider* other ) override;
+
+	void SetState ( PlayerState state );
+	PlayerState GetState ( ) { return _state; }
+private:
+	void TickInput ( );
+	virtual void TickMoveGround ( );
+	virtual void TickJumpFall ( );
 
 private:
 	void Jump ( );
@@ -36,6 +49,5 @@ private:
 	Vec2 _speed = {};
 	int32 _gravity = 1000;
 
-	bool _onGround = false;
-	bool _jumping = false;
+	PlayerState _state = PlayerState::JumpFall;
 };
