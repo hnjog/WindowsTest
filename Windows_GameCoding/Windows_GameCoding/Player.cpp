@@ -1,19 +1,30 @@
 #include "pch.h"
-#include"Player.h"
-#include"InputManager.h"
-#include"ResourceManager.h"
-#include"Flipbook.h"
-#include"TimeManager.h"
-#include"CameraComponent.h"
-#include"Collider.h"
-#include"BoxCollider.h"
+#include "Player.h"
+#include "InputManager.h"
+#include "TimeManager.h"
+#include "ResourceManager.h"
+#include "Flipbook.h"
+#include "CameraComponent.h"
+#include "BoxCollider.h"
+#include "SceneManager.h"
+#include "DevScene.h"
 
 Player::Player ( )
 {
-	_flipbookUp = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveUp" );
-	_flipbookDown = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveDown" );
-	_flipbookLeft = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveLeft" );
-	_flipbookRight = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveRight" );
+	_flipbookIdle[ DIR_UP ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_IdleUp" );
+	_flipbookIdle[ DIR_DOWN ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_IdleDown" );
+	_flipbookIdle[ DIR_LEFT ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_IdleLeft" );
+	_flipbookIdle[ DIR_RIGHT ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_IdleRight" );
+
+	_flipbookMove[ DIR_UP ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveUp" );
+	_flipbookMove[ DIR_DOWN ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveDown" );
+	_flipbookMove[ DIR_LEFT ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveLeft" );
+	_flipbookMove[ DIR_RIGHT ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_MoveRight" );
+
+	_flipbookAttack[ DIR_UP ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_AttackUp" );
+	_flipbookAttack[ DIR_DOWN ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_AttackDown" );
+	_flipbookAttack[ DIR_LEFT ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_AttackLeft" );
+	_flipbookAttack[ DIR_RIGHT ] = GET_SINGLE ( ResourceManager )->GetFlipbook ( L"FB_AttackRight" );
 
 	CameraComponent* camera = new CameraComponent ( );
 	AddComponent ( camera );
@@ -27,32 +38,28 @@ void Player::BeginPlay ( )
 {
 	Super::BeginPlay ( );
 
-	SetFlipbook ( _flipbookRight );
+	SetState ( PlayerState::Move );
+	SetState ( PlayerState::Idle );
+
+	SetCellPos ( { 5, 5 } , true );
 }
 
 void Player::Tick ( )
 {
 	Super::Tick ( );
 
-	
-	TickInput ( );
-
 	switch ( _state )
 	{
-	case PlayerState::MoveGround:
-	{
-		TickMoveGround ( );
+	case PlayerState::Idle:
+		TickIdle ( );
+		break;
+	case PlayerState::Move:
+		TickMove ( );
+		break;
+	case PlayerState::Skill:
+		TickSkill ( );
+		break;
 	}
-	break;
-	case PlayerState::JumpFall:
-	{
-		TickJumpFall ( );
-	}
-	break;
-	}
-
-
-	TickGravity ( );
 }
 
 void Player::Render ( HDC hdc )
@@ -60,31 +67,95 @@ void Player::Render ( HDC hdc )
 	Super::Render ( hdc );
 }
 
-void Player::OnComponentBeginOverlap ( Collider* collider , Collider* other )
+void Player::TickIdle ( )
 {
-	Super::OnComponentBeginOverlap ( collider , other );
+	float deltaTime = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
 
-	BoxCollider* b1 = dynamic_cast< BoxCollider* >( collider );
-	BoxCollider* b2 = dynamic_cast< BoxCollider* >( other );
-	if ( b1 == nullptr || b2 == nullptr )
-		return;
+	_keyPressed = true;
+	Vec2Int deltaXY[ 4 ] = { {0, -1}, {0, 1}, {-1, 0}, {1, 0} };
 
-	AdjustCollisionPos ( b1 , b2 );
-
-	if ( b2->GetCollisionLayer ( ) == CLT_GROUND )
+	if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::W ) )
 	{
-		SetState ( PlayerState::MoveGround );
+		SetDir ( DIR_UP );
+
+		Vec2Int nextPos = _cellPos + deltaXY[ _dir ];
+		if ( CanGo ( nextPos ) )
+		{
+			SetCellPos ( nextPos );
+			SetState ( PlayerState::Move );
+		}
+	}
+	else  if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::S ) )
+	{
+		SetDir ( DIR_DOWN );
+
+		Vec2Int nextPos = _cellPos + deltaXY[ _dir ];
+		if ( CanGo ( nextPos ) )
+		{
+			SetCellPos ( nextPos );
+			SetState ( PlayerState::Move );
+		}
+	}
+	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::A ) )
+	{
+		SetDir ( DIR_LEFT );
+		Vec2Int nextPos = _cellPos + deltaXY[ _dir ];
+		if ( CanGo ( nextPos ) )
+		{
+			SetCellPos ( nextPos );
+			SetState ( PlayerState::Move );
+		}
+	}
+	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::D ) )
+	{
+		SetDir ( DIR_RIGHT );
+		Vec2Int nextPos = _cellPos + deltaXY[ _dir ];
+		if ( CanGo ( nextPos ) )
+		{
+			SetCellPos ( nextPos );
+			SetState ( PlayerState::Move );
+		}
+	}
+	else
+	{
+		_keyPressed = false;
+		if ( _state == PlayerState::Idle )
+			UpdateAnimation ( );
 	}
 }
 
-void Player::OnComponentEndOverlap ( Collider* collider , Collider* other )
+void Player::TickMove ( )
 {
-	Super::OnComponentEndOverlap ( collider , other );
+	float deltaTime = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
 
-	BoxCollider* b1 = dynamic_cast< BoxCollider* >( collider );
-	BoxCollider* b2 = dynamic_cast< BoxCollider* >( other );
-	if ( b1 == nullptr || b2 == nullptr )
-		return;
+	Vec2 dir = ( _destPos - _pos );
+	if ( dir.Length ( ) < 10.f )
+	{
+		SetState ( PlayerState::Idle );
+		_pos = _destPos;
+	}
+	else
+	{
+		switch ( _dir )
+		{
+		case DIR_UP:
+			_pos.y -= 200 * deltaTime;
+			break;
+		case DIR_DOWN:
+			_pos.y += 200 * deltaTime;
+			break;
+		case DIR_LEFT:
+			_pos.x -= 200 * deltaTime;
+			break;
+		case DIR_RIGHT:
+			_pos.x += 200 * deltaTime;
+			break;
+		}
+	}
+}
+
+void Player::TickSkill ( )
+{
 
 }
 
@@ -93,111 +164,60 @@ void Player::SetState ( PlayerState state )
 	if ( _state == state )
 		return;
 
-	switch ( state )
-	{
-	case PlayerState::MoveGround:
-		_speed.y = 0;
-		break;
-	case PlayerState::JumpFall:
-		break;
-	default:
-		break;
-	}
-
 	_state = state;
+	UpdateAnimation ( );
 }
 
-void Player::TickInput ( )
+void Player::SetDir ( Dir dir )
 {
-	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
-	const float speed = 200.f;
+	_dir = dir;
+	UpdateAnimation ( );
+}
 
-	if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::A ) )
+void Player::UpdateAnimation ( )
+{
+	switch ( _state )
 	{
-		_pos.x -= speed * delta;
-		SetFlipbook ( _flipbookLeft );
-	}
-	else if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::D ) )
-	{
-		_pos.x += speed * delta;
-		SetFlipbook ( _flipbookRight );
-	}
-}
-
-void Player::TickMoveGround ( )
-{
-	if ( GET_SINGLE ( InputManager )->GetButton ( KeyType::SpaceBar ) )
-	{
-		Jump ( );
-	}
-
-	
-}
-
-void Player::TickJumpFall ( )
-{
-}
-
-void Player::Jump ( )
-{
-	if ( _state == PlayerState::JumpFall )
-		return;
-
-	SetState( PlayerState::JumpFall);
-	_speed.y = -500;
-}
-
-void Player::TickGravity ( )
-{
-	float delta = GET_SINGLE ( TimeManager )->GetDeltaTime ( );
-
-	if ( delta > 0.1f )
-		return;
-
-	if ( _state == PlayerState::MoveGround )
-		return;
-
-	_speed.y += _gravity * delta;
-	_pos.y += _speed.y * delta;
-}
-
-void Player::AdjustCollisionPos ( BoxCollider* b1 , BoxCollider* b2 )
-{
-	RECT r1 = b1->GetRect ( );
-	RECT r2 = b2->GetRect ( );
-
-	Vec2 pos = GetPos ( );
-
-	RECT intersect = {};
-	if ( ::IntersectRect ( &intersect , &r1 , &r2 ) )
-	{
-		int32 w = intersect.right - intersect.left;
-		int32 h = intersect.bottom - intersect.top;
-		const int disValue = 5;
-		if ( w > h )
-		{
-			if ( intersect.top == r2.top )
-			{
-				pos.y -= h * disValue;
-			}
-			else
-			{
-				pos.y += h * disValue;
-			}
-		}
+	case PlayerState::Idle:
+		if ( _keyPressed )
+			SetFlipbook ( _flipbookMove[ _dir ] );
 		else
-		{
-			if ( intersect.left == r2.left )
-			{
-				pos.x -= w * disValue;
-			}
-			else
-			{
-				pos.x += w * disValue;
-			}
-		}
-
+			SetFlipbook ( _flipbookIdle[ _dir ] );
+		break;
+	case PlayerState::Move:
+		SetFlipbook ( _flipbookMove[ _dir ] );
+		break;
+	case PlayerState::Skill:
+		SetFlipbook ( _flipbookAttack[ _dir ] );
+		break;
 	}
+}
 
-	SetPos ( pos );
+bool Player::HasReachedDest ( )
+{
+	Vec2 dir = ( _destPos - _pos );
+	return ( dir.Length ( ) < 10.f );
+}
+
+bool Player::CanGo ( Vec2Int cellPos )
+{
+	DevScene* scene = dynamic_cast< DevScene* >( GET_SINGLE ( SceneManager )->GetCurrentScene ( ) );
+	if ( scene == nullptr )
+		return false;
+
+	return scene->CanGo ( cellPos );
+}
+
+void Player::SetCellPos ( Vec2Int cellPos , bool teleport )
+{
+	_cellPos = cellPos;
+
+	DevScene* scene = dynamic_cast< DevScene* >( GET_SINGLE ( SceneManager )->GetCurrentScene ( ) );
+	if ( scene == nullptr )
+		return;
+
+	_destPos = scene->ConvertPos ( cellPos );
+
+	if ( teleport )
+		_pos = _destPos;
 }

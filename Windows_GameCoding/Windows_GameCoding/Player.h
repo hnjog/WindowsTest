@@ -8,8 +8,9 @@ class BoxCollider;
 
 enum class PlayerState
 {
-	MoveGround,
-	JumpFall,
+	Idle ,
+	Move ,
+	Skill
 };
 
 class Player : public FlipbookActor
@@ -24,30 +25,29 @@ public:
 	virtual void Tick ( )override;
 	virtual void Render ( HDC hdc )override;
 
-	virtual void OnComponentBeginOverlap ( Collider* collider , Collider* other ) override;
-	virtual void OnComponentEndOverlap ( Collider* collider , Collider* other ) override;
+private:
+
+	virtual void TickIdle ( );
+	virtual void TickMove ( );
+	virtual void TickSkill ( );
 
 	void SetState ( PlayerState state );
-	PlayerState GetState ( ) { return _state; }
-private:
-	void TickInput ( );
-	virtual void TickMoveGround ( );
-	virtual void TickJumpFall ( );
+	void SetDir ( Dir dir );
+
+	void UpdateAnimation ( );
+
+	bool HasReachedDest ( );
+	bool CanGo ( Vec2Int cellPos );
+	void SetCellPos ( Vec2Int cellPos , bool teleport = false );
 
 private:
-	void Jump ( );
-	void TickGravity ( );
-	void AdjustCollisionPos ( BoxCollider* b1 , BoxCollider* b2 );
+	Flipbook* _flipbookIdle[ 4 ] = {};
+	Flipbook* _flipbookMove[ 4 ] = {};
+	Flipbook* _flipbookAttack[ 4 ] = {};
 
-protected:
-	Flipbook* _flipbookUp = nullptr;
-	Flipbook* _flipbookDown = nullptr;
-	Flipbook* _flipbookLeft = nullptr;
-	Flipbook* _flipbookRight = nullptr;
-
-private:
+	Vec2Int _cellPos = {};
 	Vec2 _speed = {};
-	int32 _gravity = 1000;
-
-	PlayerState _state = PlayerState::JumpFall;
+	Dir _dir = DIR_DOWN;
+	PlayerState _state = PlayerState::Idle;
+	bool _keyPressed = false;
 };

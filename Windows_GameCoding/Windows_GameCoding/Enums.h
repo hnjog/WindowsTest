@@ -7,11 +7,11 @@ enum class SceneType
 	EditScene,
 };
 
-enum class Dir
-{
-	Left,
-	Right,
-};
+//enum class Dir
+//{
+//	Left,
+//	Right,
+//};
 
 enum LAYER_TYPE
 {
@@ -36,4 +36,12 @@ enum COLLISION_LAYER_TYPE
 	CLT_WALL,
 
 	CLT_MAXCOUNT,
+};
+
+enum Dir
+{
+	DIR_UP ,
+	DIR_DOWN ,
+	DIR_LEFT ,
+	DIR_RIGHT ,
 };
