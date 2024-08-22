@@ -9,84 +9,46 @@
 
 using namespace std;
 
-class RefCountable
+
+class Knight : enable_shared_from_this<Knight>
 {
 public:
-	RefCountable() {}
-	virtual ~RefCountable() {}
-
-	int GetRefCount() { return _refCount; }
-	int AddRef() { return ++_refCount; }
-	int ReleaseRef()
+	void Test()
 	{
-		int refCount = --_refCount;
-		if (refCount == 0)
-		{
-			delete this;
-		}
+		// 일반 포인터를 shared_ptr로 만듦
+		// 주의점
+		// 이건 자기 자신을 가리키는 공유 포인터 이며,
+		// ref가 0이 되는 순간 this를 '지우게 됨'
+		// 
+		// 아~주 위험하니 이런식으로 사용하지 말자
+		// 
+		//Move(shared_ptr<Knight>(this));
 
-		return refCount;
+		// weak를 건네주는 방식은 조금 더 안전한 방식
+		//Move(shared_ptr<Knight>(_wptr));
+
+		// 공유 포인터를 사용할 것이라면 이게 안전한 방식
+		Move(shared_from_this());
 	}
 
-	// 멀티스레드 환경에서 위험할 순 있음
-protected:
-	atomic<int> _refCount = 1;
-};
-
-template<typename T>
-class TSharedPtr
-{
-public:
-	TSharedPtr() {}
-	TSharedPtr(T* ptr) { Set(ptr); }
-
-	//복사
-	TSharedPtr(const TSharedPtr& other) { Set(other._ptr); }
-
-	// 이동
-	TSharedPtr(TSharedPtr&& other) { _ptr = other._ptr; other._ptr = nullptr; }
-
-private:
-	void Set(T* ptr)
+	void Move(shared_ptr<Knight> k)
 	{
-		_ptr = ptr;
-		if (ptr)
-			ptr->AddRef();
-	}
 
-	void Release()
-	{
-		if (_ptr != nullptr)
-		{
-			_ptr->ReleaseRef();
-			_ptr = nullptr;
-		}
 	}
 
 private:
-	T* _ptr = nullptr;
+	//weak_ptr<Knight> _wptr;
 };
-
-class Knight : public RefCountable
-{
-
-};
-
-map<int , Knight*> _knights;
-
-void Test(Knight* knight)
-{
-	_knights[ 100 ] = knight;
-	// 이게 '나뉘어' 있기에 멀티 스레드 환경에서 문제가 발생할 여지가 있음
-	// 멀티 스레드 환경에서 '수동'으로 관리를 하는 것은 매우 피곤한 일
-	knight->AddRef();
-}
 
 int main()
 {
-	Knight* knight = new Knight();
-
-	thread t(Test , knight);
-	
-	t.join();
+	Knight* ptr = new Knight();
+	{
+		// Test 함수 내부에서 별도의 공유 포인터가 하나 '생성' 됨
+		// 그렇기에 ref Block이 2개로 나뉘며
+		// '2'번 지우려고 시도하기에 터지게 된다
+		//
+		shared_ptr<Knight> k(ptr);
+		k->Test(); // Crash
+	}
 }
