@@ -5,34 +5,48 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Tests">
+      <UniqueIdentifier>{4da7d922-5cfd-410a-bc92-6fa77009db7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SingleThreadTest.cpp">
+    <ClCompile Include="ServerTest\pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CacheBaseTest.cpp">
+    <ClCompile Include="ServerTest\CacheBaseTest.cpp">
+      <Filter>소스 파일\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerTest\DeadLockTest.cpp">
+      <Filter>소스 파일\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerTest\EventNConditionValue.cpp">
+      <Filter>소스 파일\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerTest\LockTest.cpp">
+      <Filter>소스 파일\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerTest\SharedResource.cpp">
+      <Filter>소스 파일\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerTest\SmartPointerTest.cpp">
+      <Filter>소스 파일\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerTest\SingleThreadTest.cpp">
+      <Filter>소스 파일\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerTest\SpinLockTest.cpp">
+      <Filter>소스 파일\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerTest\ThreadPipelineTest.cpp">
+      <Filter>소스 파일\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerTest\Server.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadPipelineTest.cpp">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ServerTest\pch.h">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SharedResource.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="LockTest.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SpinLockTest.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DeadLockTest.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="EventNConditionValue.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SmartPointerTest.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
 </Project>
